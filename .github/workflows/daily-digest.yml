@@ -2,8 +2,8 @@ name: Daily Agents Radar
 
 on:
   schedule:
-    # 每天 00:00 UTC = 08:00 CST (UTC+8)
-    - cron: "0 0 * * *"
+    # 周一到周五 00:00 UTC = 工作日 08:00 CST (UTC+8)
+    - cron: "0 0 * * 1-5"
   workflow_dispatch:
 
 permissions:
