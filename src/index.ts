@@ -337,11 +337,38 @@ async function main(): Promise<void> {
     summary: summariesByLang[lang].openclawSummary,
   });
 
+  const compareOrFallback = async (id: string, prompt: string, lang: Lang): Promise<string> => {
+    try {
+      return await callLlm(prompt);
+    } catch (err) {
+      console.error(`  [${id}] comparative analysis failed: ${err}`);
+      return lang === "en"
+        ? "Comparative analysis generation failed for this run. See the per-project sections below for collected source data and individual summaries."
+        : "本次横向对比分析生成失败。下方仍保留已抓取的数据与各项目单独摘要，可先据此阅读。";
+    }
+  };
+
   const [zhComparison, zhPeersComparison, enComparison, enPeersComparison] = await Promise.all([
-    callLlm(buildComparisonPrompt(zhSummaries.cliDigests, dateStr, "zh")),
-    callLlm(buildPeersComparisonPrompt(makeOpenclawDigest("zh"), zhSummaries.peerDigests, dateStr, "zh")),
-    callLlm(buildComparisonPrompt(enSummaries.cliDigests, dateStr, "en")),
-    callLlm(buildPeersComparisonPrompt(makeOpenclawDigest("en"), enSummaries.peerDigests, dateStr, "en")),
+    compareOrFallback(
+      "cli-comparison/zh",
+      buildComparisonPrompt(zhSummaries.cliDigests, dateStr, "zh"),
+      "zh",
+    ),
+    compareOrFallback(
+      "agents-comparison/zh",
+      buildPeersComparisonPrompt(makeOpenclawDigest("zh"), zhSummaries.peerDigests, dateStr, "zh"),
+      "zh",
+    ),
+    compareOrFallback(
+      "cli-comparison/en",
+      buildComparisonPrompt(enSummaries.cliDigests, dateStr, "en"),
+      "en",
+    ),
+    compareOrFallback(
+      "agents-comparison/en",
+      buildPeersComparisonPrompt(makeOpenclawDigest("en"), enSummaries.peerDigests, dateStr, "en"),
+      "en",
+    ),
   ]);
 
   const comparisonByLang = { zh: zhComparison, en: enComparison };

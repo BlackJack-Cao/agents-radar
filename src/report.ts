@@ -57,6 +57,11 @@ export function is429(err: unknown): boolean {
   return (err as { status?: number })?.status === 429 || String(err).includes("429");
 }
 
+export function isRetryableLlmError(err: unknown): boolean {
+  const text = String(err);
+  return is429(err) || text.includes("Unexpected empty response") || text.includes("Connection error");
+}
+
 export async function callLlm(prompt: string, maxTokens = LLM_TOKENS_DEFAULT): Promise<string> {
   for (let attempt = 0; ; attempt++) {
     await acquireSlot();
@@ -64,11 +69,13 @@ export async function callLlm(prompt: string, maxTokens = LLM_TOKENS_DEFAULT): P
     try {
       return await provider.call(prompt, maxTokens);
     } catch (err) {
-      if (attempt < MAX_RETRIES && is429(err)) {
+      if (attempt < MAX_RETRIES && isRetryableLlmError(err)) {
         releaseSlot();
         released = true;
         const wait = RETRY_BASE_MS * 2 ** attempt;
-        console.error(`[llm] 429 — retry ${attempt + 1}/${MAX_RETRIES} in ${wait / 1000}s...`);
+        console.error(
+          `[llm] retryable error — retry ${attempt + 1}/${MAX_RETRIES} in ${wait / 1000}s: ${err}`,
+        );
         await sleep(wait);
         continue;
       }
