@@ -19,15 +19,26 @@ import { type LlmProvider, createProvider } from "./providers/index.ts";
 
 const provider: LlmProvider = createProvider();
 
+function readIntEnv(name: string, fallback: number): number {
+  const raw = process.env[name];
+  if (!raw) return fallback;
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) ? parsed : fallback;
+}
+
 // ---------------------------------------------------------------------------
 // Concurrency limiter — prevents rate-limit (429) errors when many LLM calls
 // are fired in parallel. At most LLM_CONCURRENCY requests are in-flight at
 // any given time; the rest queue and run as slots free up.
 // ---------------------------------------------------------------------------
 
-const LLM_CONCURRENCY = 5;
+const LLM_CONCURRENCY = Math.max(1, readIntEnv("LLM_CONCURRENCY", 5));
+const LLM_MIN_INTERVAL_MS = Math.max(0, readIntEnv("LLM_MIN_INTERVAL_MS", 0));
 let llmSlots = LLM_CONCURRENCY;
 const llmQueue: Array<() => void> = [];
+let nextLlmStartAt = 0;
+
+console.log(`[llm] concurrency=${LLM_CONCURRENCY}, min_interval_ms=${LLM_MIN_INTERVAL_MS}`);
 
 function acquireSlot(): Promise<void> {
   if (llmSlots > 0) {
@@ -44,6 +55,17 @@ function releaseSlot(): void {
   } else {
     llmSlots++;
   }
+}
+
+async function waitForRateLimitTurn(): Promise<void> {
+  if (LLM_MIN_INTERVAL_MS <= 0) return;
+
+  const now = Date.now();
+  const startAt = Math.max(now, nextLlmStartAt);
+  nextLlmStartAt = startAt + LLM_MIN_INTERVAL_MS;
+
+  const wait = startAt - now;
+  if (wait > 0) await sleep(wait);
 }
 
 // ---------------------------------------------------------------------------
@@ -67,6 +89,7 @@ export async function callLlm(prompt: string, maxTokens = LLM_TOKENS_DEFAULT): P
     await acquireSlot();
     let released = false;
     try {
+      await waitForRateLimitTurn();
       return await provider.call(prompt, maxTokens);
     } catch (err) {
       if (attempt < MAX_RETRIES && isRetryableLlmError(err)) {

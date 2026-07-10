@@ -15,7 +15,7 @@ permissions:
 jobs:
   monthly:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 60
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -43,6 +43,8 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
           OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5.4-mini' }}
+          LLM_CONCURRENCY: ${{ vars.LLM_CONCURRENCY || '1' }}
+          LLM_MIN_INTERVAL_MS: ${{ vars.LLM_MIN_INTERVAL_MS || '22000' }}
           DIGEST_REPO: ${{ github.repository }}
         run: pnpm monthly
 
