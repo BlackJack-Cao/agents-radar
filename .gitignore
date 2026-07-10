@@ -1,0 +1,9 @@
+.env
+local/.env.local
+local/logs/
+.pages/
+.DS_Store
+.idea/
+node_modules/
+dist/
+social/
