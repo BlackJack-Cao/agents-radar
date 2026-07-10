@@ -1,4 +1,118 @@
 {
-  "zh": {},
-  "en": {}
+  "zh": {
+    "ai-cli": [
+      "AI CLI工具生态进入深度集成与复杂工作流新阶段",
+      "MCP协议插件生态成为提升AI代理能力关键战场",
+      "Gemini CLI因安全与核心修复活跃度非常高",
+      "OpenCode V2演进与新模型支持成社区焦点",
+      "多智能体协作与工作流编排成为共同关注方向",
+      "长上下文与内存管理是各工具攻坚的难点"
+    ],
+    "ai-agents": [
+      "OpenClaw会话存储架构正大规模迁移至SQLite",
+      "项目修复网关崩溃导致Git工作树残留的孤儿问题",
+      "安全增强：提议为持久化认证密钥增加AES-256加密",
+      "用户体验优化：重新设计会话侧边栏和界面布局",
+      "技能工作坊自动批准模式挂起问题已得到修复",
+      "项目整体处于高强度维护与演进的健康状态"
+    ],
+    "ai-trending": [
+      "agent-skills单日爆增2554星，定义AI编码代理技能标准",
+      "OfficeCLI让AI代理原生读写编辑Word/Excel/PPT文件",
+      "DesktopCommanderMCP赋予Claude终端与文件系统控制能力",
+      "claude-video使Claude能观看理解任何视频内容",
+      "awesome-design-md收集品牌设计系统，让AI生成匹配UI",
+      "pentagi全自主AI智能体可执行复杂渗透测试任务"
+    ],
+    "ai-hn": [
+      "GLM 5.2在会计基准测试中准确率逼近人类簿记员",
+      "OpenAI被指控隐藏训练数据日志，面临法律合规危机",
+      "前美联储主席伯南克加入Anthropic监督信托",
+      "Web工具可可视化编辑LLM内部思维链，提高可解释性",
+      "GPT-5.6在衡量通用推理的ARC-AGI基准结果公布",
+      "安全工具为Claude Code等AI编程助手提供策略执行"
+    ],
+    "ai-arxiv": [
+      "UltraX提出自适应程序化编辑大规模提升预训练数据质量",
+      "研究指出仅用准确性评估LLM量化会掩盖行为变化",
+      "UniClawBench提出评估主动型智能体的通用新基准",
+      "主动记忆智能体框架解决长视野任务信息淹没问题",
+      "BiSCo-LLM实现无需查表的极低比特LLM压缩",
+      "研究探讨使用国家级LLM进行数据标注的有效性"
+    ],
+    "ai-hf": [
+      "百度Unlimited-OCR模型下载量破130万，需求强劲",
+      "英伟达LocateAnything-3B轻量视觉定位模型下载量破145万",
+      "GLM-5.2 MoE大模型获3745赞，成最热语言模型",
+      "Unsloth量化版Qwen3.6-27B下载量近290万，凸显部署趋势",
+      "美团LongCat-2.0开源百万级上下文对话模型",
+      "谷歌发布表格数据基础模型tabfm，填补领域空白"
+    ],
+    "ai-community": [
+      "开发者构建Linter专门捕获AI助手编写的安全漏洞",
+      "文章指出AI代理更需要事件日志而非更多工具",
+      "架构优化使Vertex AI月度账单从8千美元降低71%",
+      "反思AI代码评审带来的‘注意力税’问题",
+      "探讨以项目文件为接口让AI代理驱动应用的新范式",
+      "社区热议谷歌AI导致‘数字膨胀’加剧气候影响"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "AI CLI ecosystem shifts to multi-agent orchestration platforms",
+      "All tools face growing pains around enterprise integration",
+      "OpenAI Codex v0.144.1 stable released with alphas",
+      "Gemini CLI in nightly release with very high activity",
+      "Claude Code v2.1.206 stable, high activity with critical bugs",
+      "Push to support latest large-context models like GPT-5.6"
+    ],
+    "ai-agents": [
+      "OpenClaw shows very high activity: 500 issues/PRs in 24h",
+      "Focus on foundational stability and UI improvements",
+      "Fixed critical session hang causing duplicate messages",
+      "Resolved task delivery status normalization for legacy data",
+      "No new releases published on 2026-07-10",
+      "Large backlog with 318 open issues and 308 open PRs"
+    ],
+    "ai-trending": [
+      "agent-skills surges +2554 stars, standardizing AI coding skills",
+      "OfficeCLI gains +1929 stars, agent-first Office automation",
+      "system_prompts_leaks +1125 stars for reverse-engineering prompts",
+      "DesktopCommanderMCP +185 stars for Claude terminal control",
+      "Prisma +376 stars as ORM for data-aware AI apps",
+      "Explosive growth in AI agent tooling and infrastructure"
+    ],
+    "ai-hn": [
+      "GLM 5.2 nearly as accurate as human book keeper",
+      "OpenAI accused of faking inability to search training data",
+      "GPT-5.6 ARC-AGI results quietly released",
+      "Anthropic's Reflect feature and Bernanke governance move",
+      "Community critical of corporate transparency in AI",
+      "Intense interest in practical capabilities of new models"
+    ],
+    "ai-arxiv": [
+      "UniClawBench aims to rigorously evaluate proactive agents",
+      "BiSCo-LLM enables extreme low-bit LLM compression",
+      "Illusion of Equivalency: new metrics for quantized LLMs",
+      "UltraX refines pre-training data with programmatic editing",
+      "DominoTree and training-free relaxed sampling for inference",
+      "Focus on trustworthy, physics-constrained AI agents"
+    ],
+    "ai-hf": [
+      "Tencent Hy3 leads trending with Hunyuan multilingual model",
+      "GLM-5.2 MoE model gains 3,745 likes, 392k downloads",
+      "Baidu Unlimited-OCR has 1.9M downloads for document processing",
+      "NVIDIA LocateAnything-3B for lightweight vision-language tasks",
+      "DeepSeek-V4-Pro-DSpark noted for reasoning capabilities",
+      "Proliferation of GGUF quantizations for Qwen, Gemma, DeepSeek"
+    ],
+    "ai-community": [
+      "Senior devs refusing AI are becoming juniors again",
+      "AI agents need receipts (event logs), not more tools",
+      "Linter built to catch security bugs from AI assistants",
+      "AI code reviews are wearing devs out: Return on Attention",
+      "Pushback against AI's environmental impact and digital bloat",
+      "Focus on cost, reliability, and security in AI integration"
+    ]
+  }
 }

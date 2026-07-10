@@ -1,6 +1,6 @@
 {
   "anthropic": {
-    "lastChecked": "2026-07-10T07:50:16.736Z",
+    "lastChecked": "2026-07-10T08:24:42.028Z",
     "seenUrls": {
       "https://www.anthropic.com/news/ust-claude": "2026-07-10T00:37:25.000Z",
       "https://www.anthropic.com/news/golden-gate-claude": "2026-07-09T20:02:16.000Z",
@@ -418,12 +418,12 @@
     }
   },
   "openai": {
-    "lastChecked": "2026-07-10T07:49:27.021Z",
+    "lastChecked": "2026-07-10T08:24:45.608Z",
     "seenUrls": {
-      "https://openai.com/index/gpt-5-6/": "2026-07-10T07:49:23.215Z",
+      "https://openai.com/index/gpt-5-6/": "2026-07-10T08:11:40.207Z",
       "https://openai.com/index/previewing-gpt-5-6-sol/": "2026-07-10T07:45:15.891Z",
       "https://openai.com/index/chatgpt-for-your-most-ambitious-work/": "2026-07-10T07:35:29.816Z",
-      "https://openai.com/index/gpt-5-6-preferred-model-microsoft-365-copilot/": "2026-07-10T07:17:00.060Z",
+      "https://openai.com/index/gpt-5-6-preferred-model-microsoft-365-copilot/": "2026-07-10T08:20:23.608Z",
       "https://openai.com/index/separating-signal-from-noise-coding-evaluations/": "2026-07-10T06:15:10.146Z",
       "https://openai.com/index/introducing-gpt-live/": "2026-07-10T03:32:34.586Z",
       "https://openai.com/business/learn/gartner-2026-agentic-coding-leader/": "2026-07-10T02:54:03.495Z",
