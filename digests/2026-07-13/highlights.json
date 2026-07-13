@@ -47,6 +47,14 @@
       "深度剖析AI智能体记忆门限与误导性引用",
       "GPT-5.6 vs Claude Fable5：成本、速度、优劣对比",
       "7个技巧防止LLM API账单悄然暴增"
+    ],
+    "ai-weekly": [
+      "GPT-5.6与Fable-5强制升级引发社区抵制",
+      "GLM 5.2会计基准逼近人类水平",
+      "OpenAI被指隐藏训练数据日志",
+      "苹果与OpenAI爆发诉讼大战",
+      "Vibe-Trading单日揽星768",
+      "Claude Code未开始任务已耗33k tokens"
     ]
   },
   "en": {
@@ -97,6 +105,14 @@
       "Google's AI digital bloat and climate impact.",
       "Prolog library for interfacing with LLMs.",
       "Anthropic research on global workspace models."
+    ],
+    "ai-weekly": [
+      "GLM 5.2 nears human-level accounting accuracy",
+      "OpenAI accused of hiding training data search logs",
+      "Ben Bernanke joins Anthropic’s Long-Term Benefit Trust",
+      "Claude Code vs OpenCode token overhead: 33k vs 7k",
+      "agent-skills project explodes +2554 stars/day",
+      "OpenClaw bug #99241: agent can't read tool results"
     ]
   }
 }
