@@ -72,8 +72,10 @@ export function buildFeishuMessage(
   const suffix = isMonthly ? " 月报" : isWeekly ? " 周报" : "";
   const lines: string[] = [`${icon} **agents-radar${suffix} · ${date}**`];
 
+  const dailyReports = baseReports.filter((r) => !r.includes("weekly") && !r.includes("monthly"));
   const ordered = [
-    ...baseReports.filter((r) => !r.includes("weekly") && !r.includes("monthly")),
+    ...dailyReports.filter((r) => r === "ai-medical"),
+    ...dailyReports.filter((r) => r !== "ai-medical"),
     ...baseReports.filter((r) => r.includes("weekly") || r.includes("monthly")),
   ];
 

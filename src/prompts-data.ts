@@ -11,6 +11,7 @@ import type { HnData } from "./hn.ts";
 import type { PhData } from "./ph.ts";
 import type { ArxivData } from "./arxiv.ts";
 import type { HfData } from "./hf.ts";
+import type { MedicalData } from "./medical.ts";
 import type { DevtoData } from "./devto.ts";
 import type { LobstersData } from "./lobsters.ts";
 import type { Lang } from "./i18n.ts";
@@ -775,6 +776,106 @@ ${modelsText}
 4. **值得探索** — 2~3 个最值得尝试或研究的模型，简述理由
 
 语言要求：中文，简洁专业，保留所有 HuggingFace 链接。
+`;
+}
+
+// ---------------------------------------------------------------------------
+// Medical AI prompt (agents, models, and industry articles; no paper feeds)
+// ---------------------------------------------------------------------------
+
+export function buildMedicalPrompt(data: MedicalData, dateStr: string, lang: Lang = "zh"): string {
+  const agentsText = data.agents
+    .map(
+      (agent, index) =>
+        `${index + 1}. ${agent.fullName}\n` +
+        `   URL: ${agent.url}\n` +
+        `   Description: ${agent.description || "N/A"}\n` +
+        `   Stars: ${agent.stars} | Forks: ${agent.forks} | Language: ${agent.language || "N/A"}\n` +
+        `   Created: ${agent.createdAt} | Last push: ${agent.pushedAt} | License: ${agent.license}\n` +
+        `   Topics: ${agent.topics.join(", ") || "N/A"} | Matched: ${agent.searchQuery}`,
+    )
+    .join("\n\n");
+
+  const modelsText = data.models
+    .map(
+      (model, index) =>
+        `${index + 1}. ${model.id}\n` +
+        `   URL: ${model.url}\n` +
+        `   Author: ${model.author} | Task: ${model.pipelineTag || "N/A"}\n` +
+        `   Likes: ${model.likes} | Downloads: ${model.downloads} | Updated: ${model.lastModified}\n` +
+        `   Tags: ${model.tags.slice(0, 8).join(", ") || "N/A"} | Matched: ${model.searchQuery}`,
+    )
+    .join("\n\n");
+
+  const articlesText = data.articles
+    .map(
+      (article, index) =>
+        `${index + 1}. ${article.title}\n` +
+        `   URL: ${article.url}\n` +
+        `   Source: ${article.source}${article.sourceUrl ? ` (${article.sourceUrl})` : ""}\n` +
+        `   Published: ${article.publishedAt} | Language: ${article.language}\n` +
+        `   Summary: ${article.summary || "N/A"}`,
+    )
+    .join("\n\n");
+
+  const sources = `GitHub=${data.sourceStatus.github ? "ok" : "failed"}, HuggingFace=${data.sourceStatus.huggingface ? "ok" : "failed"}, News=${data.sourceStatus.news ? "ok" : "failed"}`;
+
+  if (lang === "en") {
+    return `You are a medical AI industry analyst. Prepare a concise, evidence-aware digest for ${dateStr} from product and industry signals only. PubMed and ArXiv papers are intentionally excluded.
+
+Source status: ${sources}
+
+## Medical Agent Candidates (${data.agents.length})
+${agentsText || "(none)"}
+
+## Medical Model Candidates (${data.models.length})
+${modelsText || "(none)"}
+
+## Medical AI Industry Articles (${data.articles.length})
+${articlesText || "(none)"}
+
+Write the report with exactly these sections:
+1. **Bottom Line** — 2-3 sentences. State clearly if there is no credible new medical-specific model or agent today.
+2. **Medical Agents** — at most 5 items, each with link, purpose, maturity, and one limitation.
+3. **Medical Models** — at most 5 items, each with link, task, evidence available, license signal, and deployment caveat.
+4. **Industry Updates** — at most 5 articles, each with source link and one-sentence relevance.
+5. **Assessment** — 3 bullets covering clinical validation, privacy/compliance, and what deserves follow-up.
+
+Rules:
+- Prefer direct medical/clinical relevance. Omit generic AI items that merely mention health.
+- Distinguish a medical-specific system from a general component that could be used in healthcare.
+- Never claim clinical validation, regulatory approval, diagnostic accuracy, or production readiness unless the source explicitly provides it.
+- Treat stars, likes, and downloads as attention signals, not evidence of medical quality.
+- Preserve source links. Keep the report under 900 words.
+`;
+  }
+
+  return `你是医疗 AI 行业分析师。请基于以下 ${dateStr} 的产品与行业信号生成精简日报。本板块明确不采集 PubMed 或 ArXiv 论文。
+
+数据源状态：${sources}
+
+## 医疗 Agent 候选（${data.agents.length} 个）
+${agentsText || "（无）"}
+
+## 医疗模型候选（${data.models.length} 个）
+${modelsText || "（无）"}
+
+## 医疗 AI 行业文章（${data.articles.length} 篇）
+${articlesText || "（无）"}
+
+请严格按以下结构输出：
+1. **今日结论** — 2~3 句话；如果没有可信的新医疗专用模型或 Agent，必须直接说明。
+2. **医疗 Agent** — 最多 5 项，每项包含链接、用途、成熟度和一个限制。
+3. **医疗模型** — 最多 5 项，每项包含链接、任务、现有证据、许可证信号和部署注意事项。
+4. **行业动态** — 最多 5 篇文章，每项保留来源链接并用一句话说明价值。
+5. **研判** — 3 条，分别覆盖临床验证、隐私合规和后续值得跟踪的内容。
+
+规则：
+- 优先保留直接涉及医疗、临床、医院、患者、药物、基因或医学影像的内容，删除只是顺带提到 health 的通用 AI 项目。
+- 明确区分“医疗专用系统”和“可能用于医疗的通用组件”。
+- 原始来源未明确说明时，不得声称完成临床验证、获得监管批准、达到诊断准确率或可投入生产。
+- Stars、点赞和下载量只代表关注度，不代表医疗质量。
+- 保留原始链接，全文控制在 1200 字以内。
 `;
 }
 

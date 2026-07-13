@@ -11,6 +11,7 @@ import {
   PH_REPORT,
   ARXIV_REPORT,
   HF_REPORT,
+  MEDICAL_REPORT,
   COMMUNITY_REPORT,
   ISSUE_LABELS,
 } from "./i18n.ts";
@@ -20,6 +21,7 @@ import {
   buildPhPrompt,
   buildArxivPrompt,
   buildHfPrompt,
+  buildMedicalPrompt,
   buildCommunityPrompt,
 } from "./prompts-data.ts";
 import { callLlm, saveFile, LLM_TOKENS_WEB } from "./report.ts";
@@ -30,6 +32,7 @@ import type { PhData } from "./ph.ts";
 import type { TrendingData } from "./trending.ts";
 import type { ArxivData } from "./arxiv.ts";
 import type { HfData } from "./hf.ts";
+import type { MedicalData } from "./medical.ts";
 import type { DevtoData } from "./devto.ts";
 import type { LobstersData } from "./lobsters.ts";
 
@@ -318,6 +321,48 @@ export async function saveHfReport(
     }
   } catch (err) {
     console.error(`  [hf/${lang}] Report generation failed: ${err}`);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Medical AI report
+// ---------------------------------------------------------------------------
+
+export async function saveMedicalReport(
+  medicalData: MedicalData,
+  utcStr: string,
+  dateStr: string,
+  digestRepo: string,
+  footer: string,
+  lang: Lang = "zh",
+): Promise<void> {
+  const sourceAvailable = Object.values(medicalData.sourceStatus).some(Boolean);
+  if (!sourceAvailable) {
+    console.log(`  [medical/${lang}] All sources unavailable, skipping report.`);
+    return;
+  }
+
+  console.log(`  [medical/${lang}] Calling LLM for medical AI report...`);
+  try {
+    const summary = await callLlm(buildMedicalPrompt(medicalData, dateStr, lang), 4096);
+    const fileName = lang === "en" ? "ai-medical-en.md" : "ai-medical.md";
+    const header =
+      lang === "en"
+        ? `# ${MEDICAL_REPORT.title[lang]} ${dateStr}\n\n` +
+          `> Sources: GitHub medical agents (${medicalData.agents.length}) + Hugging Face medical models (${medicalData.models.length}) + medical AI industry news (${medicalData.articles.length}); paper feeds excluded | Generated: ${utcStr} UTC\n\n---\n\n`
+        : `# ${MEDICAL_REPORT.title[lang]} ${dateStr}\n\n` +
+          `> 数据来源：GitHub 医疗 Agent（${medicalData.agents.length} 个）+ Hugging Face 医疗模型（${medicalData.models.length} 个）+ 医疗 AI 行业新闻（${medicalData.articles.length} 篇）；不包含论文源 | 生成时间：${utcStr} UTC\n\n---\n\n`;
+    const content = header + summary + footer;
+
+    console.log(`  Saved ${saveFile(content, dateStr, fileName)}`);
+    if (digestRepo) {
+      const title = MEDICAL_REPORT.issueTitle(dateStr, lang);
+      const label = ISSUE_LABELS.medical[lang];
+      const url = await createGitHubIssue(title, content, label);
+      console.log(`  Created medical issue (${lang}): ${url}`);
+    }
+  } catch (err) {
+    console.error(`  [medical/${lang}] Report generation failed: ${err}`);
   }
 }
 

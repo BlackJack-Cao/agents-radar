@@ -61,9 +61,11 @@ export function buildMessage(
   const suffix = isMonthly ? " 月报" : isWeekly ? " 周报" : "";
   const lines: string[] = [`${icon} <b>agents-radar${suffix} · ${date}</b>`];
 
-  // Daily reports first, then rollups
+  // Put the company-priority medical section first, then other daily reports and rollups.
+  const dailyReports = baseReports.filter((r) => !r.includes("weekly") && !r.includes("monthly"));
   const ordered = [
-    ...baseReports.filter((r) => !r.includes("weekly") && !r.includes("monthly")),
+    ...dailyReports.filter((r) => r === "ai-medical"),
+    ...dailyReports.filter((r) => r !== "ai-medical"),
     ...baseReports.filter((r) => r.includes("weekly") || r.includes("monthly")),
   ];
 

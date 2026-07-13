@@ -13,6 +13,8 @@ const REPORT_FILES = [
   "ai-cli-en",
   "ai-agents",
   "ai-agents-en",
+  "ai-medical",
+  "ai-medical-en",
   "ai-web",
   "ai-web-en",
   "ai-trending",

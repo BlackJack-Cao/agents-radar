@@ -47,6 +47,7 @@ async function main() {
     "ai-ph",
     "ai-arxiv",
     "ai-hf",
+    "ai-medical",
     "ai-community",
   ];
 

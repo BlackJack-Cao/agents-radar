@@ -209,6 +209,8 @@ const LABEL_COLORS: Record<string, string> = {
   "arxiv-en": "d44a4a",
   hf: "ff9d00",
   "hf-en": "ffb84d",
+  medical: "d73a4a",
+  "medical-en": "e99695",
   community: "2563eb",
   "community-en": "60a5fa",
 };

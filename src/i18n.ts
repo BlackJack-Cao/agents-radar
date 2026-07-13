@@ -93,6 +93,12 @@ export const HF_REPORT = {
     lang === "en" ? `🤗 Hugging Face Trending Models ${dateStr}` : `🤗 Hugging Face 热门模型日报 ${dateStr}`,
 } as const;
 
+export const MEDICAL_REPORT = {
+  title: t("医疗 AI 行业日报", "Medical AI Industry Digest"),
+  issueTitle: (dateStr: string, lang: Lang) =>
+    lang === "en" ? `🏥 Medical AI Industry Digest ${dateStr}` : `🏥 医疗 AI 行业日报 ${dateStr}`,
+} as const;
+
 export const COMMUNITY_REPORT = {
   title: t("技术社区 AI 动态日报", "Tech Community AI Digest"),
   issueTitle: (dateStr: string, lang: Lang) =>
@@ -119,6 +125,7 @@ export const ISSUE_LABELS = {
   ph: t("ph", "ph-en"),
   arxiv: t("arxiv", "arxiv-en"),
   hf: t("hf", "hf-en"),
+  medical: t("medical", "medical-en"),
   community: t("community", "community-en"),
 } as const;
 
@@ -161,6 +168,8 @@ export const REPORT_LABELS: Record<string, string> = {
   "ai-arxiv-en": "ArXiv AI Research Digest",
   "ai-hf": "Hugging Face 热门模型日报",
   "ai-hf-en": "Hugging Face Trending Models Digest",
+  "ai-medical": "医疗 AI 行业日报",
+  "ai-medical-en": "Medical AI Industry Digest",
   "ai-community": "技术社区 AI 动态日报",
   "ai-community-en": "Tech Community AI Digest",
   "ai-weekly": "AI 工具生态周报",
@@ -178,6 +187,7 @@ export const NOTIFY_LABELS: Record<string, Record<Lang, string>> = {
   "ai-ph": t("Product Hunt", "Product Hunt"),
   "ai-arxiv": t("ArXiv 研究", "ArXiv Research"),
   "ai-hf": t("HF 模型", "HF Models"),
+  "ai-medical": t("医疗 AI", "Medical AI"),
   "ai-community": t("技术社区", "Tech Community"),
   "ai-weekly": t("AI 工具生态周报", "AI Tools Weekly"),
   "ai-monthly": t("AI 工具生态月报", "AI Tools Monthly"),

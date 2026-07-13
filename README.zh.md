@@ -2,7 +2,7 @@
 
 [English](./README.md) | 中文
 
-每天早上 08:00 CST 自动运行的 GitHub Actions 工作流。聚合 10 个 AI 生态数据源，以中英双语每日简报的形式发布为 GitHub Issues 并提交为 Markdown 文件。每周和每月自动生成汇总报告。
+每个工作日早晨自动运行的 GitHub Actions 工作流。聚合 11+ 组 AI 生态数据源，以中英双语每日简报的形式发布为 GitHub Issues 并提交为 Markdown 文件。每周和每月自动生成汇总报告。
 
 ### 数据源
 
@@ -15,6 +15,7 @@
 | [Product Hunt](https://www.producthunt.com) | GraphQL API | 昨日 AI 产品按投票排序 |
 | [ArXiv](https://arxiv.org) | [ArXiv API](https://export.arxiv.org/api/query) | cs.AI、cs.CL、cs.LG 最新论文（48 小时内） |
 | [Hugging Face](https://huggingface.co) | [Hub API](https://huggingface.co/api/models) | 按周点赞排序的 30 个热门模型 |
+| 医疗 AI 数据源 | GitHub Search + HF Hub + 官方行业 RSS | 医疗 Agent、医疗模型和医疗 AI 行业文章；不抓取论文源 |
 | [Dev.to](https://dev.to) | [Forem API](https://dev.to/api) | 5 个标签下的 AI/LLM 热门文章 |
 | [Lobste.rs](https://lobste.rs) | JSON API | 7 天内 AI/ML 标签内容 |
 | [Anthropic](https://anthropic.com) + [OpenAI](https://openai.com) | Sitemap | 通过 `lastmod` 差异检测新文章 |
@@ -183,6 +184,7 @@ LLM 负责过滤非 AI 项目，将结果按维度分类（AI 基础工具 / AI 
 
 - 抓取所有追踪仓库过去 24 小时内更新的 Issues、PR 和 Releases
 - 追踪热门 Claude Code Skills，按社区参与度而非时间排序
+- 每日定向追踪医疗 Agent、医疗模型和医疗 AI 行业新闻，并随其他日报一起推送
 - 为每个 CLI 仓库生成单独摘要，并输出跨工具横向对比分析
 - 生成 OpenClaw 深度项目报告，并与 11 个同赛道项目进行横向对比
 - 通过 Sitemap 抓取 Anthropic 和 OpenAI 官网内容，增量检测新文章
@@ -300,6 +302,7 @@ pnpm start
 | `ai-web.md` | 官网内容报告（仅在有新内容时生成） | `web` |
 | `ai-trending.md` | GitHub AI 趋势热榜 — 按维度分类 + 趋势信号分析（仅在有数据时生成） | `trending` |
 | `ai-hn.md` | Hacker News AI 社区动态 — 热门帖子分类 + 情绪分析（仅在抓取成功时生成） | `hn` |
+| `ai-medical.md` | 医疗 AI 行业日报 — GitHub Agent + Hugging Face 模型 + 行业新闻，不包含论文源 | `medical` |
 
 `digests/web-state.json` 用于记录已处理的 URL，随每日简报一并提交。
 
