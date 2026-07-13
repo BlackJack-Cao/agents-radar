@@ -1,0 +1,102 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code遭遇Fable-5模型Bug与权限系统失效",
+      "OpenAI Codex因GPT-5.6强制多代理引发Windows问题",
+      "Gemini CLI子代理误报、挂起，CVE补丁修复",
+      "GitHub Copilot CLI会话数据损坏、TUI卡死",
+      "Kimi Code CLI修复Windows兼容性与API限流误判",
+      "Pi、OpenCode、Qwen Code密集修复GPT-5.6支持问题"
+    ],
+    "ai-agents": [
+      "OpenClaw单日处理500条Issue与500个PR，活跃度极高",
+      "会话状态持久化与网关内存泄漏成修复重点",
+      "工具结果变图片占位符导致智能体不可读严重回归",
+      "社区强烈呼吁Linux/Windows桌面客户端（#75获81👍）",
+      "修复Microsoft Teams插件签名清单超2MiB发布阻塞",
+      "Slack禁用频道不再静默丢弃消息改为警告输出"
+    ],
+    "ai-trending": [
+      "Vibe-Trading单日揽星768，金融AI Agent爆发",
+      "claude-cookbooks与DesktopCommanderMCP助力Claude生态",
+      "destructive_command_guard新增444星，聚焦Agent安全",
+      "ollama 175k星，新增Kimi、DeepSeek模型支持",
+      "davila7/claude-code-templates今日+274星，简化Claude Code",
+      "RAG老牌项目dify、open-webui持续累积百万级star"
+    ],
+    "ai-hn": [
+      "Claude Code预加载33k tokens，OpenCode仅7k，成本争议",
+      "苹果起诉OpenAI，涉及工程师流动与商业秘密",
+      "因果理论用于LLM可解释性研究获关注",
+      "Grok 4.5与GPT5.6在PR安全审查中击败Anthropic",
+      "开发者从头训练113M参数地震预测LLM",
+      "社区批判AI编程助手的真实成本与效率问题"
+    ],
+    "ai-hf": [
+      "Qwen3.5/3.6系列GGUF量化模型下载量破百万",
+      "NVIDIA LocateAnything-3B视觉定位模型高赞2714",
+      "百度Unlimited-OCR全能OCR下载量143万",
+      "GLM-5.2 MoE模型周点赞3856登顶",
+      "Supra-Router-51M轻量模型用于大模型智能路由",
+      "Giga-World-1视频生成模型亮相，聚焦长视频"
+    ],
+    "ai-community": [
+      "Jetson Nano运行Ollama本地大模型性能基准出炉",
+      "AI过滤安全误报，但需警惕掩盖真实漏洞",
+      "MCP协议连接Claude Desktop读取网站分析数据",
+      "深度剖析AI智能体记忆门限与误导性引用",
+      "GPT-5.6 vs Claude Fable5：成本、速度、优劣对比",
+      "7个技巧防止LLM API账单悄然暴增"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Windows parity gap persists across tools.",
+      "Security model fragility: permission bypasses.",
+      "GPT-5.6 rollout causes integration turbulence.",
+      "Agent reliability: false success reports.",
+      "Claude Code Skills repository added.",
+      "All tools now support multi-model backends."
+    ],
+    "ai-agents": [
+      "500 issues and 500 PRs in 24 hours.",
+      "No new releases published today.",
+      "Growing review backlog with 'needs-maintainer-review' tags.",
+      "190 PRs merged or closed in 24 hours.",
+      "Fix for Microsoft Teams plugin beta6 blocker.",
+      "Session-state corruption bugs reported."
+    ],
+    "ai-trending": [
+      "destructive_command_guard gains 444 stars/day.",
+      "DesktopCommanderMCP gives Claude safe terminal access.",
+      "Vibe-Trading leads with 768 stars/day.",
+      "claude-cookbooks offers ready-to-run agent workflows.",
+      "hallmark introduces anti-AI-slop design skills.",
+      "ollama remains #1 for local LLM deployment."
+    ],
+    "ai-hn": [
+      "Claude Code sends 33k tokens vs OpenCode 7k.",
+      "I love LLMs, I hate hype thread scores 302 points.",
+      "Apple sues OpenAI for trade secret theft.",
+      "Mechanistic interpretability using causality theory.",
+      "Anthropic finds hidden space where Claude puzzles.",
+      "Grok 4.5 and GPT5.6 beat Anthropic for PR security."
+    ],
+    "ai-hf": [
+      "GLM-5.2 tops with 3,856 likes.",
+      "Qwen 3.6 quantized variants reach 2.9M downloads.",
+      "Nvidia LocateAnything-3B for visual grounding.",
+      "Baidu's Unlimited-OCR for enterprise text tasks.",
+      "Tencent Hy3 enters open LLM race.",
+      "MoE and quantized multimodal models trending."
+    ],
+    "ai-community": [
+      "Developers share hard-won lessons on API costs.",
+      "Agents skip checkpoints but report success.",
+      "Malware attack via npm preinstall hooks.",
+      "Google's AI digital bloat and climate impact.",
+      "Prolog library for interfacing with LLMs.",
+      "Anthropic research on global workspace models."
+    ]
+  }
+}
