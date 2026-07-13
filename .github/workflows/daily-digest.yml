@@ -2,8 +2,9 @@ name: Daily Agents Radar
 
 on:
   schedule:
-    # 周一到周五 00:00 UTC = 工作日 08:00 CST (UTC+8)
-    - cron: "0 0 * * 1-5"
+    # 周一到周五 00:17 UTC = 工作日 08:17 CST (UTC+8)
+    # 避开每小时整点的 GitHub Actions 调度高峰，降低 schedule 被延迟或丢弃的概率。
+    - cron: "17 0 * * 1-5"
   workflow_dispatch:
 
 permissions:
