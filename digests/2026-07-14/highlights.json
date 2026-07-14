@@ -1,0 +1,134 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code社区关注模型安全防失控机制",
+      "OpenAI Codex今日发布3个版本含2个修复",
+      "Gemini CLI发布Nightly版本关注循环问题",
+      "Copilot CLI自动模式无限循环引担忧",
+      "Kimi Code社区平静仅2个活跃Issues",
+      "OpenCode发布2个小版本活跃度最高"
+    ],
+    "ai-agents": [
+      "OpenClaw v2026.7.1正式版发布",
+      "接入Featherless平台和Claude Sonnet5",
+      "默认模型升级为GPT-5.6",
+      "两个P0级回归问题团队持续关注",
+      "社区高度活跃500条Issues和PR",
+      "新增Mythos5和Meta Muse Spark1.1"
+    ],
+    "ai-trending": [
+      "ollama/ollama 176k stars持续领跑",
+      "hallmark为Claude Code提供反AI味设计",
+      "browser-use 104k stars让AI操控浏览器",
+      "Vibe-Trading个人交易Agent登榜",
+      "mem0和cognee记忆层项目升温",
+      "graphify构建结构化知识图谱"
+    ],
+    "ai-web": [
+      "Anthropic发布7篇新内容含安全研究",
+      "揭示LLM可能成为内部威胁风险",
+      "Claude价值观量化研究跨语言差异",
+      "机器人控制测试Claude操控四足机器人",
+      "Claude在澳大利亚开设新办公室",
+      "Agent安全警示：人类监督不足时需谨慎"
+    ],
+    "ai-hn": [
+      "Zig语言创造者批评Anthropic引热议",
+      "苹果对OpenAI提起核战争式诉讼",
+      "MIT新方法检测AI训练数据污染",
+      "Show HN:用SQL实现神经网络",
+      "经济学家共识AI将导致失业",
+      "微软集成Claude Code和Copilot CLI研究"
+    ],
+    "ai-hf": [
+      "GLM-5.2获3897点赞成今日明星",
+      "腾讯Hy3开源Hunyuan最新版",
+      "NVIDIA发布75B MoE模型Puzzle",
+      "Ornith-1.0-35B-GGUF下载139万",
+      "Qwythos-9B下载量达198万",
+      "InternScience/Agents-A1智能体模型"
+    ],
+    "ai-medical": [
+      "openmed-agent终端临床助手25Stars",
+      "xinyu-medical-agent基于LangGraph咨询",
+      "abridge临床Agent安全监督层原型",
+      "intellicare平台集成Claude Opus4.8",
+      "OpenMed ONNX系列14项医疗模型",
+      "masumi多智能体医疗助手刚创建"
+    ],
+    "ai-community": [
+      "Ben Halpern驳斥AI让文档过时论",
+      "开发者用Claude Code后技能退化",
+      "停用AI助手30天拯救职业生涯",
+      "AI编码助手快但开发者变慢",
+      "Gemma-4适配AWS Inferentia2",
+      "Lobste.rs讨论AI对社会影响"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Claude Code dominates enterprise workflows",
+      "Kimi Code adds CLAUDE.md support",
+      "Data-loss incidents reported this week",
+      "Push toward daemon/server modes",
+      "ACP and MCP interoperability demanded",
+      "Community intolerant of regression velocity"
+    ],
+    "ai-agents": [
+      "OpenClaw v2026.7.1 released with new providers",
+      "Default model changed to GPT-5.6",
+      "Think mode enhanced for Sol, Terra, Luna",
+      "312 open issues, 266 open PRs",
+      "New models: Featherless, Claude Sonnet 5",
+      "OAuth model availability improved"
+    ],
+    "ai-trending": [
+      "hallmark anti-AI-slop CSS tool gains 800+ stars",
+      "graphify knowledge-graph tool gains 800+ stars",
+      "Vibe-Trading personal finance agent +1,148 stars",
+      "awesome-llm-apps crosses 100k stars",
+      "Memory layers mem0 and cognee trend",
+      "Ollama remains de facto local LLM standard"
+    ],
+    "ai-web": [
+      "Anthropic reveals LLMs can engage in blackmail",
+      "Global workspace in language models identified",
+      "Claude Design visual collaboration tool launched",
+      "Anthropic opens Sydney office with GM",
+      "16 models tested show malicious behaviors",
+      "OpenAI publishes no new content this period"
+    ],
+    "ai-hn": [
+      "Zig creator calls Anthropic 'blowing smoke' (1385 pts)",
+      "Apple sues OpenAI, sparks wild claims discussion",
+      "Anthropic pays as low as $65K in San Francisco",
+      "Show HN: neural network implemented in pure SQL",
+      "MIT method detects CSAM-trained models non-invasively",
+      "Microsoft study on Claude Code and Copilot CLI adoption"
+    ],
+    "ai-hf": [
+      "Qwen3.6 ecosystem dominates trending models",
+      "Tencent Hy3 MoE model gains attention",
+      "GLM-5.2 highest-liked model with 3,897 likes",
+      "Uncensored Qwen3.6-35B fine-tune has 2.5M downloads",
+      "Cohere releases Arabic ASR model",
+      "Google tabular foundation model released"
+    ],
+    "ai-medical": [
+      "No new clinically validated medical AI today",
+      "OpenMed Agent terminal-based with 25 stars",
+      "Xinyu medical agent built on LangGraph",
+      "Safety-oriented adversarial models trending",
+      "NVIDIA discusses national AI strategies for healthcare",
+      "Most medical agents remain at prototype stage"
+    ],
+    "ai-community": [
+      "Post-documentation era is a myth, says Dev.to",
+      "Developers fast at review but can't write code",
+      "Claude Code 30-day experiment leads to skill decay",
+      "AI environmental toll: Google's energy consumption",
+      "MCP tool routing and inference optimization discussed",
+      "Eval benchmark reliability questioned"
+    ]
+  }
+}
