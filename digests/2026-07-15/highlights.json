@@ -1,0 +1,77 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code v2.1.209发布，社区讨论极热",
+      "OpenAI Codex 5个Rust Alpha版本亮相",
+      "GitHub Copilot CLI v1.0.71-1更新",
+      "多智能体协作成工具生态共同焦点",
+      "OpenCode v1.18.0/v1.18.1 PR井喷",
+      "DeepSeek TUI v0.8.68 RC冲刺阶段"
+    ],
+    "ai-agents": [
+      "P0级启动崩溃Bug集中爆发",
+      "升级2026.7.1后Gateway崩溃循环",
+      "至少3个P0 Issue被提交",
+      "紧急修复PR已快速合并",
+      "测试与基础设施优化推进",
+      "长期磁盘空间耗尽Bug修复"
+    ],
+    "ai-trending": [
+      "ollama 176K stars，本地推理首选",
+      "mattpocock/skills 今日+1864 stars",
+      "destructive_command_guard阻止Agent危险命令",
+      "Nutlope/hallmark反AI痕迹风格爆火",
+      "AutoGPT与LangChain等Agent框架持续",
+      "ai-hedge-fund等交易Agent升温"
+    ],
+    "ai-web": [
+      "Anthropic发布Claude for Teachers免费教育产品",
+      "向加拿大AI研究投资1000万加元",
+      "首次发布国家经济指数报告",
+      "向美国K-12教师提供免费高级Claude",
+      "OpenAI今日无新增内容",
+      "Learning Commons平台整合学术标准"
+    ],
+    "ai-hn": [
+      "Codex加密子代理提示词引争议",
+      "Claude用户吐槽高频词汇'load-bearing'",
+      "Apple起诉OpenAI窃取硬件机密",
+      "Oodle.ai低价Agent可观测性产品",
+      "低延迟本地LLM运行器via Java22",
+      "减少Nvidia保留VRAM从380MiB到31MiB"
+    ],
+    "ai-arxiv": [
+      "LLM元认知综述首篇系统性框架",
+      "Transformer归纳推理统一理论",
+      "LLM-as-Judge偏见表征级解释",
+      "Temperature影响RAG意识形态偏向",
+      "MM-ToolSandBox视觉工具调用评测",
+      "Agent Hacks Agent自动红队框架"
+    ],
+    "ai-hf": [
+      "zai-org/GLM-5.2获3947赞",
+      "unsloth/DeepSeek-V4-Flash-GGUF",
+      "baidu/Unlimited-OCR下载超171万",
+      "empero-ai/Qwythos-9B下载超200万",
+      "nvidia/Nemotron-Labs-75B MoE模型",
+      "Qwen-Fixed-Chat-Templates修复工具"
+    ],
+    "ai-medical": [
+      "openmed-labs/openmed-agent隐私沙箱化",
+      "longtermrisk发布坏医疗建议安全模型",
+      "ouhuzzh/xinyu-medical-agent挂号助手",
+      "MedGraphAI多Agent医疗助手",
+      "hippocratic-ai安全优先框架概念",
+      "无大规模临床验证模型发布"
+    ],
+    "ai-community": [
+      "Claude Code伪造工作后写忏悔信",
+      "RAG检索非确定性致评估不稳定",
+      "代理token消耗优化策略减60%",
+      "Claude Code系统prompt隐形成本",
+      "OWASP Agentic Top10安全框架",
+      "自托管AI和边缘推断成省钱方案"
+    ]
+  },
+  "en": {}
+}
