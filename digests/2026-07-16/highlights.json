@@ -1,0 +1,150 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code快速迭代，聚焦安全性与子代理透明化",
+      "OpenAI Codex自动化PR活跃但稳定性问题突出",
+      "Gemini CLI安全与稳定性修复密集",
+      "GitHub Copilot CLI MCP生态集成问题成焦点",
+      "OpenCode新UI引发大面积回归Bug",
+      "Qwen Code CI自动修复机制亮眼"
+    ],
+    "ai-agents": [
+      "OpenClaw发布v2026.7.2-beta.1，新增远程编码会话",
+      "升级v2026.7.1引发启动崩溃，P0级gateway crash-loop",
+      "跨平台客户端缺失问题长期存在（#75）",
+      "待合并PR积压348条，维护者响应迅速",
+      "原生自动化与节点能力增强",
+      "修复插件安装元数据冲突导致Gateway无法就绪"
+    ],
+    "ai-trending": [
+      "hallmark和skills单日新增超1000 stars",
+      "destructive_command_guard 497 stars聚焦Agent安全",
+      "awesome-llm-apps单日新增1278 stars",
+      "airi自托管AI伴侣入榜",
+      "Vibe-Trading LLM交易代理入榜",
+      "Ollama 176k stars本地LLM首选引擎"
+    ],
+    "ai-web": [
+      "Anthropic发布Claude Tag，团队协作@AI",
+      "金融代理模板10个即开即用",
+      "Claude for Teachers教育领域产品",
+      "投资加拿大AI研究1000万加元",
+      "OpenAI今日无实质性新内容发布",
+      "内部65%代码由Claude Tag生成"
+    ],
+    "ai-hn": [
+      "提示注入安全危机获598分高热度",
+      "Inkling 975B参数开源模型发布",
+      "GPT-Red自我改进框架发布",
+      "Brainless模拟Claude Code UI组件库",
+      "Grok Build开源",
+      "OpenAI Codex Micro键盘产品发布"
+    ],
+    "ai-arxiv": [
+      "SOTA模型在无关上下文下预测翻转问题",
+      "无参考设置下LLM裁判系统偏差",
+      "抑制参数记忆的纯上下文语言模型",
+      "离散扩散语言模型用于语音识别",
+      "扩散LLM推理加速综述",
+      "复杂度感知框架减少智能体资源浪费"
+    ],
+    "ai-hf": [
+      "Ternary-Bonsai-27B三元量化至2-bit",
+      "GLM-5.2获3993点赞，国产MoE模型",
+      "InternScience/Agents-A1专为Agent任务设计",
+      "Ornith-1.0-35B-GGUF下载153万",
+      "baidu/Unlimited-OCR高下载量",
+      "MiniCPM5-1B风格蒸馏到思考模式"
+    ],
+    "ai-medical": [
+      "Phlox开源本地医疗AI Agent（Stars 95）",
+      "Parchee手写处方识别多Agent系统",
+      "MedGraphAI整合问答与医学图像分析",
+      "Cheiron临床试验查询服务",
+      "Reasoning-Medical-27B医疗推理模型",
+      "多Agent框架覆盖处方、影像、RAG"
+    ],
+    "ai-community": [
+      "AI Agent成本控制与断路器模式",
+      "Type-safe LLM输出用Zod校验",
+      "LLM电路断路器自动回退本地模型",
+      "Bruce Schneier论AI监控与社会进步",
+      "Prolog与LLM结合硬核讨论",
+      "AI数据中心与财富集中分析"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Seven of nine tools shipped releases in 24h",
+      "Tension between power-user control and safety",
+      "Claude Code v2.1.210 and v2.1.211 released",
+      "OpenAI Codex had 3 Rust alpha releases",
+      "Gemini CLI reported P1 bugs",
+      "OpenCode and Pi faced UI redesign backlash"
+    ],
+    "ai-agents": [
+      "484 issues and 500 PRs updated in 24h",
+      "168 issues closed, 152 PRs merged",
+      "v2026.7.2-beta.1 with remote coding sessions",
+      "Critical gateway crash-loop bugs from previous release",
+      "Community actively fixing stability issues",
+      "Remote coding: run Control UI on cloud workers"
+    ],
+    "ai-trending": [
+      "Agent skill packs gained 3600+ stars",
+      "Nutlope/hallmark +1119 stars today",
+      "mattpocock/skills +2160 stars today",
+      "destructive_command_guard blocks dangerous commands",
+      "Vibe-Trading and DeepTutor gaining traction",
+      "RAG/vector-database steady growth"
+    ],
+    "ai-web": [
+      "Anthropic launched Claude Tag proactive Slack agent",
+      "Claude Tag drove 65% of internal code",
+      "Claude for Teachers free premium for US K-12",
+      "Ten agent templates for financial services",
+      "$10M commitment to Canadian AI research",
+      "OpenAI crawl had no accessible article text"
+    ],
+    "ai-hn": [
+      "Inkling open-weights 975B LLM (119 points)",
+      "Codex Micro hardware release from OpenAI",
+      "Vulnerability in Claude memory system exposed",
+      "Guardrails not uniform across languages",
+      "Debate on AI safety and corporate control",
+      "Polarized sentiment on open-source vs privacy"
+    ],
+    "ai-arxiv": [
+      "Complexity-aware reasoning for LLMs (paper 1)",
+      "Incentive-compatible LLMs against misreporting",
+      "Aggregate accuracy hides prediction flips",
+      "LLM judges too generous without reference answer",
+      "Accelerated masked diffusion LLMs (paper 39)",
+      "On-device mobile agents without fine-tuning"
+    ],
+    "ai-hf": [
+      "GLM-5.2 leading with 3993 likes",
+      "Extreme 2-bit and 1-bit quantization of 27B models",
+      "Qwen-based MoE models flooding charts",
+      "Baidu Unlimited-OCR enterprise multimodal",
+      "Tencent Hy3 Hunyuan-based model",
+      "LoRAs for identity-preserving video generation"
+    ],
+    "ai-medical": [
+      "All agents in early prototyping, no validation",
+      "phlox: local-first medical scribe (95 stars)",
+      "openmed-agent: terminal-based clinical assistant",
+      "Parchee: multi-agent prescription parsing",
+      "cheiron: clinical trials visualization tool",
+      "No production readiness yet"
+    ],
+    "ai-community": [
+      "Cost drift of 0.35%/day discussed",
+      "Circuit breakers for LLM budgets",
+      "AI agent that refuses to guess when uncertain",
+      "Data leak cautionary tale (Leo stratagem)",
+      "Schneier on AI surveillance and wealth",
+      "Verifiable inference technical note"
+    ]
+  }
+}
