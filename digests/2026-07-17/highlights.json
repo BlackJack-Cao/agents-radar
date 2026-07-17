@@ -1,0 +1,77 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code等9个AI CLI工具24小时零活动",
+      "OpenAI Codex、Gemini CLI等均无更新",
+      "社区关注增强上下文管理功能",
+      "企业用户关注权限与成本控制",
+      "Qwen Code等聚焦非英文语言支持",
+      "各工具差异化定位明确，生态同步沉淀"
+    ],
+    "ai-agents": [
+      "OpenClaw等13个智能体项目24小时零活动",
+      "智能体赛道进入稳定维护期",
+      "头部项目OpenClaw专注架构收敛",
+      "中腰部项目如LobsterAI寻求垂直突破",
+      "尾部项目如NullClaw低活跃",
+      "全生态无Issue、PR或Release"
+    ],
+    "ai-trending": [
+      "Nutlope/hallmark单日+3181 stars登顶",
+      "openinterpreter获+633 stars，编码Agent",
+      "GitHub发布copilot-sdk，Agent平台化",
+      "HKUDS/DeepTutor获+647 stars，AI教育",
+      "Apache ossie孵化，语义元数据标准化",
+      "mattpocock/skills获+2073，实战技能集"
+    ],
+    "ai-web": [
+      "Anthropic今日无更新，延续静默策略",
+      "OpenAI发布《Why Teens Deserve Access Safe AI》",
+      "OpenAI首次将青少年作为独立议题",
+      "Anthropic坚持深度优先，技术权威",
+      "OpenAI强化社会责任形象",
+      "两公司战略重心分化明显"
+    ],
+    "ai-hn": [
+      "YC创始人大量流向OpenAI与Anthropic（292分）",
+      "用经典ML检测LLM文本获136分热议",
+      "LM Studio推智能体功能获113分",
+      "欧盟强制Google开放搜索数据",
+      "1Password集成Claude，安全访问",
+      "Anthropic派低级员工出席听证会惹欧盟不满"
+    ],
+    "ai-arxiv": [
+      "Hindcast提出预测市场回放评测框架",
+      "TRACE解决长期任务稀疏奖励分配",
+      "DeltaMerge-LowRes用于低资源适应",
+      "Deep Interaction人机交互修正推理",
+      "Do Agent Optimizers Compound?质疑叠加性",
+      "Experience Memory Graph一次性错误修正"
+    ],
+    "ai-hf": [
+      "GLM-5.2获4029赞领跑排行榜",
+      "百度Unlimited-OCR下载量185万",
+      "Qwen3.6无审查版下载量232万",
+      "Bonsai系列极限量化受关注",
+      "OvisOCR2专精OCR，多模态深化",
+      "Wan-Dancer-14B视频生成模型"
+    ],
+    "ai-medical": [
+      "EpistemeAI/Reasoning-Medical-27B最受关注",
+      "RKB109临床RAG安全网关模型",
+      "UMCU医学NER识别症状疾病手术",
+      "OpenMed病理检测ONNX适配Android",
+      "今日无生产就绪医疗Agent",
+      "24个模型发布但缺临床验证"
+    ],
+    "ai-community": [
+      "LLM评估指南教开发者三维度验证",
+      "AI代码生成比作小额贷款引发共鸣",
+      "Mac Mini处理1亿行对比ClickHouse和PG",
+      "自建Go版AI Agent可观测工具",
+      "Claude进程空闲时占满CPU被吐槽",
+      "本地MCP服务器用Ollama+ChromaDB"
+    ]
+  },
+  "en": {}
+}
