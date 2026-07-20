@@ -6,6 +6,11 @@ on:
     - cron: "0 2 1 * *"
   workflow_dispatch:
 
+concurrency:
+  group: agents-radar-publish
+  cancel-in-progress: false
+  queue: max
+
 permissions:
   contents: write
   issues: write
