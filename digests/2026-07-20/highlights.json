@@ -1,0 +1,22 @@
+{
+  "zh": {
+    "ai-weekly": [
+      "Anthropic发布Claude Tag，Slack中@AI协作新范式",
+      "AI编码助手Token浪费争议：Claude Code预加载33K Token",
+      "OpenAI Codex强制启用多代理V2遭社区强烈抵制",
+      "金融交易Agent双星爆发：Vibe-Trading和ai-hedge-fund",
+      "Claude for Teachers免费开放，深耕K-12教育生态",
+      "GitHub Copilot SDK发布，从工具迈向平台化Agent服务"
+    ]
+  },
+  "en": {
+    "ai-weekly": [
+      "Agent Skills repo gains 2554 stars/day",
+      "Token overhead war: Claude Code 33k vs 7k",
+      "Anthropic study reveals LLM insider threat risk",
+      "Anthropic launches Claude Tag and finance agents",
+      "AI CLI tools see 24-hour zero activity",
+      "Anti-AI tool hallmark tops GitHub with 3181 stars"
+    ]
+  }
+}
