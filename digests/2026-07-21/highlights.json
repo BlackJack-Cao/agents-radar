@@ -1,0 +1,134 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code 2.1.216 发布，修复消息卡顿问题",
+      "OpenAI Codex 0.145.0-alpha.25 海量 PR/Issue",
+      "Gemini CLI v0.52.0-nightly 开发活跃度极高",
+      "GitHub Copilot CLI v1.0.72 用户依赖度大",
+      "OpenCode v1.18.4 发布，覆盖核心到 UI",
+      "MCP 协议集成成各工具共同焦点"
+    ],
+    "ai-agents": [
+      "OpenClaw 社区 24h 内 848+ Issues/PR",
+      "安全审计修复符号链接工作区漏洞",
+      "Ollama 连接泄漏资源问题已修复",
+      "Web UI 设置侧栏图标重复问题解决",
+      "Telegram 流式错误可见性提升",
+      "子代理行为与权限模型成讨论热点"
+    ],
+    "ai-trending": [
+      "ollama 支持 Kimi-K2.6、GLM-5.2 等新模型",
+      "code-review-graph 今日新增 1876 星",
+      "kimi-cli 终端的 AI Agent 新增 405 星",
+      "transcribe.cpp 轻量语音转文字新增 401 星",
+      "fastmcp Python 优先的 MCP 框架",
+      "AutoGPT 持续扩展记忆与工具集成"
+    ],
+    "ai-web": [
+      "Anthropic 首次主题化资助罕见病研究",
+      "最高 5 万美元 Claude API 信用额度",
+      "OpenAI 发布『AI 时代记分卡』页面",
+      "OpenAI 长视野模型安全对齐新页面",
+      "Anthropic 从工具提供者转向科研平台",
+      "两家公司发布节奏分化：垂直 vs 框架"
+    ],
+    "ai-hn": [
+      "Kimi K3 vs Qwen 3.8 引发 Anthropic 命运辩论",
+      "Sebastian Raschka 教你控制 LLM 推理深度",
+      "OpenAI 发布长时程模型安全对齐研究",
+      "Anthropic 被指用 AI 证明雅可比猜想为假",
+      "美国政府考虑禁止中国开源 AI 模型",
+      "10 分钟 AI 电影制作 Pipeline 开源"
+    ],
+    "ai-hf": [
+      "Google gemma-4-31B-it 下载近 1200 万",
+      "智谱 GLM-5.2 获 4220 点赞夺冠",
+      "百度 Unlimited-OCR 下载 212 万实用",
+      "Qwen 3.6 生态爆发，微调变体数十个",
+      "empero-ai 的 Qwythos-9B 下载 211 万",
+      "Bonsai 系列实现 1-bit 量化本地运行"
+    ],
+    "ai-medical": [
+      "genzeonplatform 发布临床 NER 模型套件",
+      "llava-medical-3B 医学视觉模型下载 728",
+      "openmed-agent 命令行医疗助手强调隐私",
+      "healthcare-agents 含 51 个美国医疗代理",
+      "Don-Uwe 医疗 AI 应用 fork 异常高",
+      "AWS 案例展示 AI 原生向医疗 IT 渗透"
+    ],
+    "ai-community": [
+      "AI 生成代码版权归属模糊引 23 评论",
+      "smolagents bug 导致重复执行有效代码",
+      "ReflectionCLI 2.0 本地优先 AI CLI 工具",
+      "CrewAI 部署 Bedrock 连环踩坑实录",
+      "AI 开发测试框架故意不信任自身",
+      "ELIZA 历史回顾与可验证推理成 Lobsters 热点"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Ecosystem bifurcating into vertical vs. extensible",
+      "Cost transparency remains universal pain point",
+      "Claude Code v2.1.216 released today",
+      "Claude Code has 10 hot issues, 6 PRs in 24h",
+      "Community engagement Very High",
+      "Token management pain point across all tools"
+    ],
+    "ai-agents": [
+      "348 issues, 500 PRs updated in 24h",
+      "No new releases for OpenClaw today",
+      "113 merged PRs in the last 24 hours",
+      "Critical P1 bugs with platinum hermit severity",
+      "Active pipeline of 387 open PRs",
+      "Session state integrity and security issues"
+    ],
+    "ai-trending": [
+      "code-review-graph gains 1,876 stars",
+      "OmniRoute (+1,300) free AI gateway",
+      "wigolo and fastmcp boost MCP adoption",
+      "voicebox (+839) open-source speech-to-text",
+      "ktransformers (+448) heterogeneous LLM inference",
+      "Ollama now supports Kimi-K2.6 and GLM-5.2"
+    ],
+    "ai-web": [
+      "Anthropic rare disease grants up to $50k credits",
+      "OpenAI publishes 'Scorecard For The Ai Age'",
+      "OpenAI safety research on long-horizon models",
+      "Anthropic's AI for Science thematic call",
+      "Both emphasize scientific impact and safety",
+      "OpenAI posts captured as metadata only"
+    ],
+    "ai-hn": [
+      "Frontier lab economics analysis (score 264)",
+      "Kimi K3 and Qwen 3.8 vs Anthropic discussion",
+      "OpenAI safety research on long-horizon models",
+      "YC startup Bloomy AI-powered K-12 mastery",
+      "Controlling reasoning effort in LLMs guide",
+      "Community split on US-China AI decoupling"
+    ],
+    "ai-hf": [
+      "Extreme quantization and MoE architectures trending",
+      "prism-ml Bonsai 1-bit variants gaining downloads",
+      "zai-org GLM-5.2 MoE model surging in popularity",
+      "Qwen3.6 uncensored fine-tune with 2M downloads",
+      "Google Gemma-4-31B-it with 11.9M downloads",
+      "Unified multimodal pipelines (Inkling, Gemma-4)"
+    ],
+    "ai-medical": [
+      "No production-ready medical agent this week",
+      "ajhcs/healthcare-agents 48 stars, prompt-only",
+      "openmed-labs privacy-first CLI assistant",
+      "MedGraphAI multi-agent prototype unvalidated",
+      "Parchee reads handwritten prescriptions",
+      "All unvalidated, no regulatory compliance"
+    ],
+    "ai-community": [
+      "AI code ownership legal debate (37 reactions)",
+      "smolagents bug retrying valid code three times",
+      "CrewAI deployment failure with 200 OK on errors",
+      "Alibaba 2.4T parameter model news",
+      "OpenAI cuts Codex context to save compute",
+      "Verifiable AI inference discussion on Lobste.rs"
+    ]
+  }
+}
