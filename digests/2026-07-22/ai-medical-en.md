@@ -1,0 +1,47 @@
+# Medical AI Industry Digest 2026-07-22
+
+> Sources: GitHub medical agents (20) + Hugging Face medical models (24) + medical AI industry news (1); paper feeds excluded | Generated: 2026-07-21 23:41 UTC
+
+---
+
+# Medical AI Industry Digest – 2026-07-22
+
+## Bottom Line
+No new medical-specific model or agent carries clinical validation, regulatory approval, or documented production readiness. The most credible signals come from a suite of healthcare NER models by **genzeonplatform** (20+ likes, explicit clinical/PII tags) and a handful of early-stage multi-agent prototypes focused on prescription parsing, triage, and evidence verification. All remain at proof-of-concept maturity.
+
+## Medical Agents
+
+1. **[Don-Uwe/ai-healthcare-agent-app](https://github.com/Don-Uwe/ai-healthcare-agent-app)** – Purpose: Centralized testing and build workflows for AI health-content delivery. Maturity: 134 stars, MIT license. Limitation: Primarily an app framework; no clinical integration or validation documented.
+
+2. **[10Prachi2006/Parchee-Medical-Assistant](https://github.com/10Prachi2006/Parchee-Medical-Assistant)** – Purpose: Multi-agent system for reading handwritten prescriptions, explaining medications, and maintaining longitudinal health memory. Maturity: 2 stars, Python, production-grade claim. Limitation: No published evaluation on real prescriptions; stars far too low for confidence.
+
+3. **[Ojochogwu866/healthcare-agents](https://github.com/Ojochogwu866/healthcare-agents)** – Purpose: FHIR-based healthcare agents with judgment-driven LLM/deterministic hybrid pipelines. Maturity: 0 stars, very new (21 Jul 2026). Limitation: No usage data; design interesting but unproven.
+
+4. **[WeiQ912/clinical-agent-monitor](https://github.com/WeiQ912/clinical-agent-monitor)** – Purpose: Multi-agent framework for evidence-based verification and safety monitoring of clinical LLM reasoning. Maturity: 0 stars, Python, topics include hallucination-detection. Limitation: No reported benchmarks; safety claims untested.
+
+5. **[Onky007/Healthcare-Agent](https://github.com/Onky007/Healthcare-Agent)** – Purpose: Autonomous multi-agent system for clinical entity extraction, diagnosis assistance, and patient routing. Maturity: 0 stars, Jupyter notebook. Limitation: No deployment evidence; code appears experimental.
+
+## Medical Models
+
+1. **[genzeonplatform/healthcare-brain-vitals-ner](https://huggingface.co/genzeonplatform/healthcare-brain-vitals-ner)** – Task: Token classification (NER) for vitals. Evidence: 22 likes, 8 downloads. License: unknown. Caveat: BERT-based; likely requires fine-tuning for production FHIR compliance.
+
+2. **[genzeonplatform/healthcare-brain-diagnosis-icd-ner](https://huggingface.co/genzeonplatform/healthcare-brain-diagnosis-icd-ner)** – Task: NER for ICD-coded diagnoses. Evidence: 20 likes, 19 downloads. License: unknown. Caveat: No formal accuracy figures; ICD coverage unclear.
+
+3. **[genzeonplatform/healthcare-brain-medication-ner](https://huggingface.co/genzeonplatform/healthcare-brain-medication-ner)** – Task: Medication NER. Evidence: 19 likes, 20 downloads. License: unknown. Caveat: Single-domain BERT model; may not generalize to all formularies.
+
+4. **[RemDev-AI/medical-triage-agent-ai-poc-merged](https://huggingface.co/RemDev-AI/medical-triage-agent-ai-poc-merged)** – Task: Text generation (medical triage). Evidence: 0 downloads, Qwen3-based. License: unknown. Caveat: "POC" explicitly in name; no triage accuracy data.
+
+5. **[onnx-community/OpenMed-PII-ClinicalBGE-Large-568M-v1-ONNX](https://huggingface.co/onnx-community/OpenMed-PII-ClinicalBGE-Large-568M-v1-ONNX)** – Task: PII de-identification. Evidence: 23 downloads, ONNX format. License: unknown. Caveat: Optimized for inference speed; clinical domain coverage not disclosed.
+
+## Industry Updates
+
+1. **[Henry Schein One goes AI-native – AWS Industries Blog](https://aws.amazon.com/blogs/industries/henry-schein-one-goes-ai-native-with-ai-product-discovery-and-strategy/)** – Relevance: Dental practice management provider (100,000+ practices) adopts AI-native cloud infrastructure, signaling enterprise push for workflow automation in a medical subspecialty.
+
+## Assessment
+
+- **Clinical Validation**: None of the listed agents or models report external validation against clinical benchmarks, real-world patient data, or regulatory clearance. The genzeonplatform NER suite has community traction but no published precision/recall.
+- **Privacy/Compliance**: The onnx-community PII model and genzeonplatform’s vitals-ner (tagged “phi”, “pii”) indicate awareness of de-identification needs. No agent demonstrates HIPAA/GDPR compliance documentation.
+- **What Deserves Follow-Up**: (1) genzeonplatform’s NER model family – highest community signal and medical specificity; (2) the clinical-agent-monitor’s hallucination-detection approach for safety; (3) Henry Schein One’s AI-native pivot as a bellwether for dental AI adoption.
+
+---
+*This digest is auto-generated by [agents-radar](https://github.com/BlackJack-Cao/agents-radar).*

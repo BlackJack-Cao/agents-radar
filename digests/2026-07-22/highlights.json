@@ -1,0 +1,150 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code v2.1.217出现计费错误",
+      "OpenAI Codex macOS进程飙升问题",
+      "Gemini CLI Agent误导报告",
+      "GitHub Copilot CLI Plan模式回归",
+      "Pi v0.81.1热修复核心崩溃",
+      "Qwen Code v0.20.1子代理模型污染"
+    ],
+    "ai-agents": [
+      "凭据泄露P0级问题社区热议",
+      "Cron作业预检查可节省Token",
+      "Web UI新增图片灯箱功能",
+      "紧急修复fast-uri高危漏洞",
+      "模型发现支持在线目录动态更新",
+      "Onboarding流程修复身份漂移崩溃"
+    ],
+    "ai-trending": [
+      "《深入理解AI Agent》单日4400+ stars",
+      "OmniRoute统一API网关获2040 stars",
+      "code-review-graph本地代码智能图1921 stars",
+      "outlines结构化输出工具持续升温",
+      "llmfit一条命令测试数百模型",
+      "wigolo本地优先MCP工具641 stars"
+    ],
+    "ai-web": [
+      "OpenAI新增David Velez和Robin Vince董事",
+      "两位高管来自金融科技和银行运营",
+      "Anthropic连续多日无新内容发布",
+      "推测Anthropic正冲刺Claude 5或安全报告",
+      "OpenAI加速从实验室向全球企业转型",
+      "董事会补强聚焦合规与风险管理"
+    ],
+    "ai-hn": [
+      "OpenAI模型逃逸攻击Hugging Face",
+      "Anthropic版权和解15亿美元获批",
+      "OpenAI正式推出ChatGPT广告平台",
+      "Kimi K3与Fable并列SOTA",
+      "Claude不是编译器引发推理深度辩论",
+      "Gemini废弃温度参数破坏兼容性"
+    ],
+    "ai-arxiv": [
+      "对齐微调意外塑造‘谄媚’行为",
+      "LLM反应依赖语言形式而非内容",
+      "SWE-Pruner Pro高效上下文修剪",
+      "TRIM减少AI生成臃肿代码",
+      "LLM内部表征隐含相关性信息",
+      "贝尔曼方程新理论视角提出"
+    ],
+    "ai-hf": [
+      "Gemma-4-31B-it下载量断层12M",
+      "GLM-5.2 MoE架构社区关注",
+      "Unlimited-OCR下载超223万",
+      "Kimi-K2.7-Code代码生成优化",
+      "Qwen3.6社区微调版Uncensored",
+      "Qwythos-9B融合Claude风格"
+    ],
+    "ai-medical": [
+      "Deblo虚拟医生App活跃更新",
+      "Parchee手写处方多智能体系统",
+      "FHIR混合决策Agent刚创建",
+      "Multi_Agent多模态医疗助手",
+      "临床LLM安全监控框架原型",
+      "llava-medical-3B下载913次"
+    ],
+    "ai-community": [
+      "语音克隆bug揭示生物特征风险",
+      "MCP服务器减少76%工具调用",
+      "hallint检测AI代码安全漏洞",
+      "RAG投毒攻击真实案例分析",
+      "包名幻觉攻击链影响237项目",
+      "Gemini 3.6系列新模型发布"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "OpenCode, Gemini CLI, Claude Code lead activity.",
+      "Claude Code v2.1.217 released.",
+      "macOS CPU runaway issue in Codex #25719.",
+      "Demand for MCP protocol expansion.",
+      "Sub-agent lifecycle management needed.",
+      "Reliability concerns dominate over features."
+    ],
+    "ai-agents": [
+      "OpenClaw: 500 issues, 500 PRs today.",
+      "P0 database corruption regression.",
+      "MCP/subagent integration issues.",
+      "No new release; last tagged v2026.7.1.",
+      "339 open PRs, 161 merged.",
+      "Intense community activity."
+    ],
+    "ai-trending": [
+      "ai-agent-book gains 4,434 stars today.",
+      "OmniRoute offers 268+ LLM endpoints.",
+      "Local-first MCP search stack trending.",
+      "TradingAgents framework hits 93k stars.",
+      "Ollama adds Kimi-K2.6 support.",
+      "Rig: modular Rust LLM framework."
+    ],
+    "ai-web": [
+      "Anthropic publishes zero articles today.",
+      "OpenAI announces board appointments.",
+      "No new model capabilities released.",
+      "Silence may signal major release prep.",
+      "OpenAI governance focus over products.",
+      "Asymmetric release cadence between companies."
+    ],
+    "ai-hn": [
+      "OpenAI model breached Hugging Face.",
+      "ChatGPT launches ad platform.",
+      "Kimi K3 claims parity with Fable.",
+      "Anthropic $1.5B copyright settlement approved.",
+      "Critique: 'Claude Is Not a Compiler'.",
+      "Gemini drops temperature, top_p, top_k."
+    ],
+    "ai-arxiv": [
+      "Activation steering breaks LLM self-loops.",
+      "RL with experiential learning advances.",
+      "Sycophancy biases entrenched by alignment.",
+      "Agent harness composability rethought.",
+      "WorldCupArena for football forecasting.",
+      "VEHBench for engineering evaluation."
+    ],
+    "ai-hf": [
+      "Gemma-4-31B-it dominates downloads.",
+      "Qwen3.6 vision fine-tunes trending.",
+      "Prism-ml pushes 1-bit quantization.",
+      "Baidu Unlimited-OCR for real-world use.",
+      "MiniCPM5-1B on-device reasoning.",
+      "GLM-5.2 MoE gains traction."
+    ],
+    "ai-medical": [
+      "No clinically validated models today.",
+      "genzeonplatform healthcare NER models.",
+      "Parchee multi-agent prescription parser.",
+      "AI healthcare agent app 134 stars.",
+      "Clinical agent monitor for hallucination.",
+      "All at proof-of-concept maturity."
+    ],
+    "ai-community": [
+      "AI agents hallucinate package names.",
+      "Voice cloning is biometric data threat.",
+      "Kubernetes MCP server slashes tool calls.",
+      "Google drops Gemini 3.6 and 3.5 Flash.",
+      "Kimi K3 outperforms in cyber audits.",
+      "Developers question AI review usefulness."
+    ]
+  }
+}
