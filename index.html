@@ -111,6 +111,43 @@
       min-height: 14px; margin-top: 4px;
       font-size: 9px; letter-spacing: 0.04em; color: var(--dim);
     }
+    #searchResults[hidden], #nav[hidden] { display: none; }
+    .search-empty {
+      padding: 18px 14px; color: var(--dim); font-size: 10px;
+      line-height: 1.6; text-align: center;
+    }
+    .search-result {
+      display: block; width: 100%; padding: 9px 14px;
+      border: none; border-left: 2px solid transparent;
+      background: none; color: var(--text); text-align: left;
+      font-family: inherit; cursor: pointer;
+      transition: background 0.12s, border-color 0.12s;
+    }
+    .search-result:hover, .search-result:focus-visible {
+      outline: none; border-left-color: var(--accent); background: var(--bg-hover);
+    }
+    .search-result-meta {
+      color: var(--accent); font-size: 9px; line-height: 1.4;
+    }
+    .search-result-section, .search-result-title, .search-result-snippet {
+      overflow: hidden; overflow-wrap: anywhere;
+    }
+    .search-result-section {
+      margin-top: 3px; color: var(--muted); font-size: 9px;
+      white-space: nowrap; text-overflow: ellipsis;
+    }
+    .search-result-title {
+      margin-top: 2px; font-size: 11px; font-weight: 700;
+      display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
+    }
+    .search-result-snippet {
+      margin-top: 3px; color: var(--muted); font-size: 9px; line-height: 1.5;
+      display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3;
+    }
+    .search-result mark, .search-mark {
+      padding: 0 2px; border-radius: 2px;
+      background: rgba(232,160,61,0.28); color: inherit;
+    }
     /* ── Month group ── */
     .month-hdr {
       display: flex; align-items: center; justify-content: space-between;
@@ -218,6 +255,10 @@
     .md details[open] summary::before { content: '▼'; }
     .md summary:hover { color: var(--text); }
     .md details > *:not(summary) { padding: 12px 14px; }
+    .md .search-target {
+      outline: 2px solid var(--accent); outline-offset: 5px;
+      background: var(--accent-bg); transition: outline-color 0.4s, background 0.4s;
+    }
 
     /* ── Mobile ── */
     #mob-toggle { display: none; }
@@ -249,6 +290,7 @@
       .side-label { margin-top: 8px; }
       #content { padding: 20px 16px 48px; }
       .md { font-size: 15px; }
+      .search-result { padding: 10px 16px; }
     }
   </style>
 </head>
@@ -276,6 +318,7 @@
         <input id="searchInput" type="search" placeholder="搜索全文，如 Claude">
         <div id="searchStatus"></div>
       </div>
+      <div id="searchResults" hidden></div>
       <div id="nav"></div>
     </div>
 
@@ -287,7 +330,15 @@
   </div>
 </div>
 
-<script>
+<script type="module">
+import {
+  chooseTargetIndex,
+  hydrateSearchIndex,
+  makeSearchSnippet,
+  searchEntries as findSearchEntries,
+} from './assets/search.js';
+
+const { marked, DOMPurify } = window;
 marked.use({ breaks: true, gfm: true });
 
 // Allow <details> and <summary> which DOMPurify strips by default
@@ -326,6 +377,10 @@ const LABELS = {
   'ai-medical-en':   'Medical AI',
   'ai-community':    '技术社区 AI',
   'ai-community-en': 'Tech Community AI',
+  'ai-weekly':       'AI 周报',
+  'ai-weekly-en':    'AI Weekly',
+  'ai-monthly':      'AI 月报',
+  'ai-monthly-en':   'AI Monthly',
 };
 
 // ── Theme ──
@@ -354,92 +409,217 @@ function getHash() {
 
 // ── State ──
 let currentKey = null;
-let searchIndex = null;
+let searchIndex = [];
 let searchReady = false;
+let searchUnavailable = false;
 let searchQuery = '';
 let searchDebounce = null;
+const reportCache = new Map();
 
 const searchInput = document.getElementById('searchInput');
 const searchStatus = document.getElementById('searchStatus');
+const searchResults = document.getElementById('searchResults');
+const nav = document.getElementById('nav');
 
 function setSearchStatus(text) {
   searchStatus.textContent = text || '';
 }
 
-function applyDateSearch(query) {
-  const needle = query.trim().toLowerCase();
-  let hits = 0;
-
-  document.querySelectorAll('.date-group').forEach((grp) => {
-    const hdr = grp.querySelector('.date-hdr');
-    if (!hdr) return;
-
-    if (!needle || !searchIndex) {
-      hdr.classList.remove('search-hit');
-      return;
-    }
-
-    const text = searchIndex.get(grp.dataset.date) || '';
-    const matched = text.includes(needle);
-    hdr.classList.toggle('search-hit', matched);
-    if (matched) hits += 1;
-  });
-
+function appendHighlightedText(container, text, query) {
+  const needle = query.trim().toLocaleLowerCase();
   if (!needle) {
-    setSearchStatus('');
-  } else if (!searchReady) {
-    setSearchStatus('正在建立索引…');
-  } else {
-    setSearchStatus(`匹配 ${hits} 天`);
+    container.textContent = text;
+    return;
+  }
+
+  const lower = text.toLocaleLowerCase();
+  let cursor = 0;
+  let matchAt = lower.indexOf(needle);
+  if (matchAt < 0) {
+    container.textContent = text;
+    return;
+  }
+
+  while (matchAt >= 0) {
+    if (matchAt > cursor) container.appendChild(document.createTextNode(text.slice(cursor, matchAt)));
+    const mark = document.createElement('mark');
+    mark.textContent = text.slice(matchAt, matchAt + needle.length);
+    container.appendChild(mark);
+    cursor = matchAt + needle.length;
+    matchAt = lower.indexOf(needle, cursor);
+  }
+  if (cursor < text.length) container.appendChild(document.createTextNode(text.slice(cursor)));
+}
+
+function renderSearchEmpty(message) {
+  const empty = document.createElement('div');
+  empty.className = 'search-empty';
+  empty.textContent = message;
+  searchResults.replaceChildren(empty);
+}
+
+function renderSearchResults(query) {
+  searchQuery = query;
+  const hasQuery = !!query.trim();
+  nav.hidden = hasQuery;
+  searchResults.hidden = !hasQuery;
+
+  if (!hasQuery) {
+    setSearchStatus(searchUnavailable ? '搜索索引暂不可用' : '');
+    searchResults.replaceChildren();
+    return;
+  }
+  if (searchUnavailable) {
+    setSearchStatus('搜索索引暂不可用');
+    renderSearchEmpty('报告仍可通过日期目录正常浏览');
+    return;
+  }
+  if (!searchReady) {
+    setSearchStatus('搜索索引加载中…');
+    renderSearchEmpty('正在准备搜索结果');
+    return;
+  }
+
+  const result = findSearchEntries(searchIndex, query, 50);
+  const suffix = result.total > result.items.length ? `，显示前 ${result.items.length} 条` : '';
+  setSearchStatus(`匹配 ${result.total} 条，涉及 ${result.days} 天${suffix}`);
+  searchResults.replaceChildren();
+  if (!result.items.length) {
+    renderSearchEmpty('没有找到匹配内容');
+    return;
+  }
+
+  for (const entry of result.items) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'search-result';
+
+    const meta = document.createElement('div');
+    meta.className = 'search-result-meta';
+    meta.textContent = `${entry.date} · ${LABELS[entry.report] || entry.report}`;
+
+    const section = document.createElement('div');
+    section.className = 'search-result-section';
+    section.textContent = entry.section || '报告正文';
+
+    const title = document.createElement('div');
+    title.className = 'search-result-title';
+    appendHighlightedText(title, entry.title, query);
+
+    const snippet = document.createElement('div');
+    snippet.className = 'search-result-snippet';
+    appendHighlightedText(snippet, makeSearchSnippet(entry.text, query), query);
+
+    button.append(meta, section, title, snippet);
+    button.onclick = () =>
+      loadReport(entry.date, entry.report, true, { anchorText: entry.anchorText, query });
+    searchResults.appendChild(button);
   }
 }
 
-async function buildSearchIndex(dates) {
-  const index = new Map();
-  await Promise.all(
-    dates.map(async ({ date, reports }) => {
-      const chunks = await Promise.all(
-        reports.map(async (report) => {
-          try {
-            const res = await fetch(`./digests/${date}/${report}.md`);
-            if (!res.ok) return '';
-            return await res.text();
-          } catch {
-            return '';
-          }
-        })
-      );
-      index.set(date, chunks.join('\n').toLowerCase());
-    })
-  );
-  return index;
-}
-
-function initSearch(dates) {
+async function initSearch() {
   searchReady = false;
-  setSearchStatus('索引准备中…');
-
-  buildSearchIndex(dates).then((index) => {
-    searchIndex = index;
+  searchUnavailable = false;
+  setSearchStatus('搜索索引加载中…');
+  try {
+    const res = await fetch('./search-index.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    searchIndex = hydrateSearchIndex(await res.json());
     searchReady = true;
-    applyDateSearch(searchQuery);
-    if (!searchQuery.trim()) setSearchStatus('');
-  });
+    setSearchStatus('');
+    renderSearchResults(searchQuery);
+  } catch (error) {
+    console.error('Search index unavailable:', error);
+    searchUnavailable = true;
+    setSearchStatus('搜索索引暂不可用');
+    renderSearchResults(searchQuery);
+  }
 }
 
 searchInput.addEventListener('input', () => {
-  searchQuery = searchInput.value;
   clearTimeout(searchDebounce);
-  searchDebounce = setTimeout(() => applyDateSearch(searchQuery), 120);
+  searchDebounce = setTimeout(() => renderSearchResults(searchInput.value), 120);
 });
 
 function setContent(html) {
   document.getElementById('content').innerHTML = html;
 }
 
-async function loadReport(date, report, push = true) {
+function clearSearchTarget() {
+  const root = document.querySelector('.md');
+  if (!root) return;
+  root.querySelectorAll('.search-target').forEach((element) => element.classList.remove('search-target'));
+  root.querySelectorAll('mark.search-mark').forEach((mark) => {
+    mark.replaceWith(document.createTextNode(mark.textContent || ''));
+  });
+  root.normalize();
+}
+
+function highlightTargetText(element, query) {
+  const needle = query.trim().toLocaleLowerCase();
+  if (!needle) return;
+  const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  let node = walker.nextNode();
+  while (node) {
+    if (!node.parentElement?.closest('mark, script, style')) nodes.push(node);
+    node = walker.nextNode();
+  }
+
+  for (const textNode of nodes) {
+    const text = textNode.nodeValue || '';
+    const lower = text.toLocaleLowerCase();
+    let cursor = 0;
+    let matchAt = lower.indexOf(needle);
+    if (matchAt < 0) continue;
+
+    const fragment = document.createDocumentFragment();
+    while (matchAt >= 0) {
+      if (matchAt > cursor) fragment.appendChild(document.createTextNode(text.slice(cursor, matchAt)));
+      const mark = document.createElement('mark');
+      mark.className = 'search-mark';
+      mark.textContent = text.slice(matchAt, matchAt + needle.length);
+      fragment.appendChild(mark);
+      cursor = matchAt + needle.length;
+      matchAt = lower.indexOf(needle, cursor);
+    }
+    if (cursor < text.length) fragment.appendChild(document.createTextNode(text.slice(cursor)));
+    textNode.replaceWith(fragment);
+  }
+}
+
+function locateSearchTarget(target) {
+  const root = document.querySelector('.md');
+  if (!root || !target) return false;
+  clearSearchTarget();
+
+  const candidates = Array.from(
+    root.querySelectorAll('h1, h2, h3, h4, h5, h6, p, li, tr, summary, blockquote'),
+  );
+  const index = chooseTargetIndex(
+    candidates.map((element) => element.textContent || ''),
+    target.anchorText,
+    target.query,
+  );
+  if (index < 0) return false;
+
+  const element = candidates[index];
+  const details = element.closest('details');
+  if (details) details.open = true;
+  highlightTargetText(element, target.query);
+  element.classList.add('search-target');
+  requestAnimationFrame(() => element.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+  window.setTimeout(() => element.classList.remove('search-target'), 2400);
+  return true;
+}
+
+async function loadReport(date, report, push = true, target = null) {
   const key = `${date}/${report}`;
-  if (key === currentKey) return;
+  if (key === currentKey) {
+    document.getElementById('sidebar').classList.remove('open');
+    if (target) locateSearchTarget(target);
+    return;
+  }
   currentKey = key;
 
   if (push) history.pushState(null, '', `#${key}`);
@@ -474,11 +654,16 @@ async function loadReport(date, report, push = true) {
   cwrap.scrollTop = 0;
 
   try {
-    const res = await fetch(`./digests/${date}/${report}.md`);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const raw = await res.text();
+    let raw = reportCache.get(key);
+    if (raw === undefined) {
+      const res = await fetch(`./digests/${date}/${report}.md`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      raw = await res.text();
+      reportCache.set(key, raw);
+    }
     const safe = renderMarkdown(raw);
     setContent(`<div class="md fade">${safe}</div>`);
+    if (target) locateSearchTarget(target);
   } catch (e) {
     setContent(`<div class="msg"><div class="msg-icon">⚠️</div><div>加载失败：${e.message}</div></div>`);
   }
@@ -606,7 +791,7 @@ window.addEventListener('popstate', () => {
     if (!dates?.length) throw new Error('manifest is empty');
 
     buildNav(dates);
-    initSearch(dates);
+    initSearch();
 
     const hash = getHash();
     const first = dates[0];
