@@ -1,0 +1,150 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code模型安全误判引发热议",
+      "OpenAI Codex Windows性能回归Bug",
+      "Gemini CLI Agent返回假成功状态",
+      "GitHub Copilot CLI企业级BYOK配置",
+      "Kimi Code API兼容性与限流问题",
+      "OpenCode服务端大规模故障频发"
+    ],
+    "ai-agents": [
+      "Android Wear即时通话磁贴新功能",
+      "重构Agent重启恢复测试夹具",
+      "渠道插件统一标准化配置",
+      "严重回归：网关启动失败Bug",
+      "doctor命令性能急剧下降",
+      "日处理410条Issue与500条PR"
+    ],
+    "ai-trending": [
+      "OmniRoute单日获1648 Stars",
+      "code-review-graph优化代码审查",
+      "Kronos发布金融基础模型",
+      "RuView用WiFi实现无摄像头感知",
+      "ragflow向量库保持高活跃",
+      "StarTrail-org实现97%存储压缩"
+    ],
+    "ai-web": [
+      "Claude Opus 4.8正式发布",
+      "2亿美元经济未来研究基金启动",
+      "Anthropic经济数据连接器开放",
+      "Claude Code引入动态工作流",
+      "OpenAI仅元数据更新无内容",
+      "设立AI社会经济影响研究方向"
+    ],
+    "ai-hn": [
+      "OpenAI模型失控攻击Hugging Face",
+      "AMD宣布巨额投资Anthropic",
+      "美军AI token用尽引发讨论",
+      "Bento单HTML文件实现PPT工具",
+      "使用MUD游戏评估LLM能力",
+      "9行Python代码实现AI Agent"
+    ],
+    "ai-arxiv": [
+      "长上下文推理重复复制诊断与修复",
+      "GAMUT基准评估事实完整性",
+      "大规模提示工程实验揭示规律",
+      "推理时引导提升跨语言一致性",
+      "编码智能体预算校准恢复路由",
+      "Agent在野部署研究与实践"
+    ],
+    "ai-hf": [
+      "zai-org/GLM-5.2采用MoE-DSA架构",
+      "google/gemma-4-31B-it下载超12M",
+      "baidu/Unlimited-OCR下载达2.2M",
+      "poolside/Laguna-S-2.1专为代码生成",
+      "Motif-3-Beta新一代嵌入模型",
+      "社区涌现大量极低比特量化模型"
+    ],
+    "ai-medical": [
+      "Genzeon临床NER模型社区认同高",
+      "HarishSingh220医疗RAG原型上传",
+      "nguiaSoren临床实验搜索可视化",
+      "Tasmiabashir的sehatbot双语助手",
+      "llava-medical-3B下载超900次",
+      "EpistemeAI推出推理医疗模型"
+    ],
+    "ai-community": [
+      "Substack AI检测器存在母语盲点",
+      "MCP服务器三分之一存在隐藏缺陷",
+      "Agent奖励黑客工程化解决模式",
+      "上下文窗口类比CPU缓存而非记忆",
+      "模糊测试发现AI沙箱向模型撒谎",
+      "AI编程中保留摩擦有益教学"
+    ]
+  },
+  "en": {
+    "ai-cli": [
+      "Claude Code and OpenAI Codex lead community engagement.",
+      "Cross-platform reliability is a major pain point.",
+      "MCP integration fragility and subagent bugs are universal.",
+      "CodeWhale innovates in skill management and extensibility.",
+      "Ecosystem bifurcating: commercial API vs self-hostable tools.",
+      "Safety classifier false positives erode trust in workflows."
+    ],
+    "ai-agents": [
+      "OpenClaw: 410 issues, 500 PRs in 24 hours.",
+      "259 issues open, 151 closed; 303 PRs open.",
+      "No new releases; major release may be imminent.",
+      "Focus on stability fixes: bounded reads, memory caps.",
+      "Forced cloud worker teardown fix prevents stalls.",
+      "Refactor reduces per-turn overhead for plugin metadata."
+    ],
+    "ai-trending": [
+      "OmniRoute gains 1,648 stars as free AI gateway.",
+      "worldmonitor hits 4,131 stars for global intelligence.",
+      "RuView adds 875 stars for WiFi spatial sensing.",
+      "i-have-adhd gains 1,682 stars for coding agent utility.",
+      "code-review-graph gets 872 stars for context reduction.",
+      "Kronos gains 134 stars for financial market foundation model."
+    ],
+    "ai-web": [
+      "Anthropic launches Economic Index connector for Claude.",
+      "$200 million research agenda for Economic Futures Fund.",
+      "Complete product roadmap from Nov 2025 to Jul 2026.",
+      "Rapid model cadence: Opus 4.5 to 4.8, Sonnet to 5.",
+      "Novel products: Agent Skills, Claude Design.",
+      "Verticalized offerings for small businesses and teachers."
+    ],
+    "ai-hn": [
+      "OpenAI models escaped eval and attacked Hugging Face.",
+      "$99 MUD benchmark for LLM reasoning gains traction.",
+      "Show HN: Cactus Hybrid teaches Gemma 4 uncertainty.",
+      "Solar Open 2: Korea's sovereign foundation model released.",
+      "AI alignment and containment debate reignited.",
+      "Playful engineering like single-file PowerPoint app."
+    ],
+    "ai-arxiv": [
+      "RLVR research matures with cost-quality tradeoff papers.",
+      "Agent safety: sabotage detection in automated R&D.",
+      "Copy Less, Ground More mitigates repetitive reasoning.",
+      "Selective State-Space Adaptation enables instance-specific tuning.",
+      "Price of Reasoning explores RL cost-quality tradeoffs.",
+      "Theory-of-mind benchmark for multi-party meetings."
+    ],
+    "ai-hf": [
+      "GLM-5.2 MoE model tops trending with 4,335 likes.",
+      "gemma-4-31B-it dominates downloads at 12 million.",
+      "Unlimited-OCR by Baidu achieves massive adoption.",
+      "Bonsai family pushes 1-bit and 2-bit ternary quantization.",
+      "Solar-Open2-250B pushes open-weight 250B parameter model.",
+      "Laguna-S-2.1 base release for code generation."
+    ],
+    "ai-medical": [
+      "No clinically validated medical agents or models today.",
+      "All GitHub repos are early-stage with ≤2 stars.",
+      "No evidence of regulatory clearance or production use.",
+      "aws-samples/sample-healthcare-agents: template only.",
+      "Medical-rag-agent: prototype without guardrails.",
+      "Sehatbot: no indication of testing on real clinical data."
+    ],
+    "ai-community": [
+      "Focus on reliability and observability of AI agents.",
+      "Substack's AI detector repeats same blind spots as Dev.to.",
+      "36 popular MCP servers lint-scanned; a third fail.",
+      "Loop engineering prevents reward hacking in agents.",
+      "Notion scales vector search 10x at 1/10th cost.",
+      "Developers demand measurable guarantees over demos."
+    ]
+  }
+}
