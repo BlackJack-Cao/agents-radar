@@ -1,124 +1,100 @@
 # AI 开源趋势日报 2026-07-23
 
-> 数据来源: GitHub Trending + GitHub Search API | 生成时间: 2026-07-22 23:41 UTC
+> 数据来源: GitHub Trending + GitHub Search API | 生成时间: 2026-07-23 04:44 UTC
 
 ---
 
-# AI 开源趋势日报 | 2026-07-23
+# AI 开源趋势日报 2026-07-23
 
 ---
 
-## 今日速览
+## 1. 今日速览
 
-- **AI 网关与路由工具**成为今日热榜最大亮点：`OmniRoute` 单日暴涨 1648 stars，以统一端点聚合 268+ 模型提供商，大幅降低开发者对接成本。
-- **Agent 生态加速工具链爆发**：`code-review-graph`、`i-have-adhd`、`pi-web` 等项目从不同角度优化 AI 编码 Agent 的上下文、输出质量与交互体验，社区对“让 Agent 更好用”的需求持续升温。
-- **金融 AI 与边缘感知**双线突破：`Kronos` 发布金融基础模型，`RuView` 用 WiFi 信号实现无摄像头感知，展示 AI 在垂直场景和新型硬件交互上的潜力。
-- **开源 RAG 与知识图谱**继续巩固基础设施地位：`ragflow`、`mem0`、`cognee` 等向量库/记忆层项目保持高活跃，`StarTrail-org/LEANN` 以 97% 存储压缩率亮相，预示 RAG 进入效率优化阶段。
+- **AI 智能体生态持续爆发**：与 Agent 相关的项目占据了今日主题搜索的绝对主流，覆盖 agent 框架、前端 UI、技能集合、记忆层等全栈工具链，其中 `NousResearch/hermes-agent`（21.9 万星）和 `CherryHQ/cherry-studio`（4.9 万星）持续领跑。
+- **“AI 网关 + 统一 API” 成为新热点**：趋势榜单中 `OmniRoute` 单日新增 1651 星，以一行代码对接 278+ 模型供应商和 500+ 模型，并内置配额感知自动回退与压缩技术，折射出社区对多模型调度与成本控制的迫切需求。
+- **代码智能与开发体验工具密集涌现**：`code-review-graph`、`i-have-adhd`、`pi-web` 等项目均聚焦于优化 AI coding agent 的上下文效率与交互体验，表明社区正从“能用”转向“好用”。
+- **金融 AI 与大模型训练框架并行推进**：`Kronos`（金融基础模型）、`TradingAgents`（多智能体交易框架）以及 `minimind`（从零训练 64M 参数 LLM）显示了垂直场景模型与低成本训练工具的双重繁荣。
 
 ---
 
-## 各维度热门项目
+## 2. 各维度热门项目
 
 ### 🔧 AI 基础工具（框架、SDK、推理引擎、开发工具、CLI）
 
-- **[OmniRoute](https://github.com/diegosouzapw/OmniRoute)** ⭐0 (+1648 today)  
-  免费 MIT 协议 AI 网关：单一端点对接 268+ 提供商、500+ 模型，支持配额感知自动回退、RTK+Caveman 压缩节省 15-95% Token，兼容 Claude Code、Cursor 等主流工具。
-- **[outlines](https://github.com/dottxt-ai/outlines)** ⭐0 (+362 today)  
-  结构化输出库，为 LLM 生成提供强类型约束，广泛应用于 Agent 工具调用和业务逻辑校验。
-- **[vllm-project/vllm](https://github.com/vllm-project/vllm)** ⭐86,899  
-  高吞吐、内存高效的 LLM 推理与服务引擎，支持 PagedAttention、连续批处理等优化，是部署大模型的标配。
-- **[langchain-ai/langchain](https://github.com/langchain-ai/langchain)** ⭐142,338  
-  Agent 工程平台，提供链式调用、工具集成、记忆管理等全栈能力，是构建 LLM 应用的基础框架。
-- **[CherryHQ/cherry-studio](https://github.com/CherryHQ/cherry-studio)** ⭐48,875  
-  AI 生产力工作室，集成智能聊天、自主 Agent 和 300+ 助手，统一访问前沿大模型。
+1. **[ollama/ollama](https://github.com/ollama/ollama)** ⭐ 176,675 → 本地运行大模型的便捷工具，已支持 Kimi、GLM、DeepSeek 等最新模型，成为社区首选推理引擎。
+2. **[vllm-project/vllm](https://github.com/vllm-project/vllm)** ⭐ 86,917 → 高吞吐、内存高效的 LLM 推理服务引擎，支持 PagedAttention 等技术，生产部署标配。
+3. **[dottxt-ai/outlines](https://github.com/dottxt-ai/outlines)** ⭐ 0 (+364 today) → 结构化输出库，让 LLM 严格按 JSON、正则等格式生成，今日 Trending 上榜，实用性强。
+4. **[langchain-ai/langchain](https://github.com/langchain-ai/langchain)** ⭐ 142,363 → 智能体工程平台，提供 agent 编排、工具调用、RAG 等完整组件，生态最成熟。
+5. **[huggingface/transformers](https://github.com/huggingface/transformers)** ⭐ 162,853 → 模型定义与训练框架，支持几乎所有主流 Transformer 模型，依然是 ML 从业者必备。
+6. **[lancedb/lancedb](https://github.com/lancedb/lancedb)** ⭐ 10,964 → 嵌入式多模态检索引擎，开发者友好的向量搜索库，适合边缘与移动场景。
+7. **[Picovoice/picollm](https://github.com/Picovoice/picollm)** ⭐ 314 → 端上 LLM 推理库，采用 X-bit 量化，在低功耗设备上运行模型。
 
 ### 🤖 AI 智能体/工作流（Agent 框架、自动化、多智能体）
 
-- **[open-webui/open-webui](https://github.com/open-webui/open-webui)** ⭐146,368  
-  用户友好的 AI 界面，支持 Ollama、OpenAI API 等多种后端，提供对话、文档管理、插件系统，是自托管 AI Agent 的首选 UI。
-- **[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)** ⭐185,648  
-  “人人可用的 AI”，自动分解任务、执行子目标、调用工具，代表自主 Agent 的经典范式。
-- **[langgenius/dify](https://github.com/langgenius/dify)** ⭐149,813  
-  构建 Agent 工作流与 RAG 管线，可视化编排 + 丰富模型/工具支持，企业级 Agent 落地利器。
-- **[ComposioHQ/awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills)** ⭐0 (+155 today)  
-  Claude 技能资源精选列表，涵盖自定义工作流、工具链集成，为 Claude 提供可复用的能力库。
-- **[pi-web](https://github.com/agegr/pi-web)** ⭐0 (+314 today)  
-  pi 编码 Agent 的 Web UI，提供可视化任务管理与实时反馈，降低 Agent 使用门槛。
-- **[i-have-adhd](https://github.com/ayghri/i-have-adhd)** ⭐0 (+1682 today)  
-  “ADHD 友好” 编码 Agent 技能，防止 Agent 埋没答案，优化输出简洁性与可读性，开发者反响热烈。
+1. **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** ⭐ 219,049 → 声称“与你一起成长的智能体”，强调自适应能力，可能是当前最受关注的 agent 项目。
+2. **[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)** ⭐ 185,647 → 实现自主任务规划的经典 agent 框架，持续迭代中。
+3. **[langgenius/dify](https://github.com/langgenius/dify)** ⭐ 149,854 → 可视化构建 Agentic 工作流和 RAG 管道，支持多模型与一键部署，适合快速原型。
+4. **[CopilotKit/CopilotKit](https://github.com/CopilotKit/CopilotKit)** ⭐ 36,224 → 面向 Agent 的前端 UI 栈（React/Angular/Mobile），今日 star 增长显著，推动 agent 用户界面标准化。
+5. **[zhayujie/CowAgent](https://github.com/zhayujie/CowAgent)** ⭐ 46,091 → 开源的超级 AI 助手与 Agent 工具箱，支持多模型、多渠道，可一行安装。
+6. **[browser-use/browser-use](https://github.com/browser-use/browser-use)** ⭐ 106,174 → 让 AI agent 能像人类一样操作网页，完成自动化任务（填表、下单等）。
+7. **[TauricResearch/TradingAgents](https://github.com/TauricResearch/TradingAgents)** ⭐ 94,148 → 多智能体 LLM 金融交易框架，结合了决策推理与工具调用，属于垂直 agent 典范。
 
 ### 📦 AI 应用（具体应用产品、垂直场景解决方案）
 
-- **[koala73/worldmonitor](https://github.com/koala73/worldmonitor)** ⭐0 (+4131 today)  
-  **今日 stars 榜第一**：全球情报仪表板，AI 驱动的新闻聚合、地缘政治监控与基础设施跟踪，面向情报分析场景。
-- **[ruvnet/RuView](https://github.com/ruvnet/RuView)** ⭐0 (+875 today)  
-  用商用 WiFi 信号实现无视频的空间智能、生命体征监测与存在检测，推动边缘 AI 新交互模式。
-- **[jamiepine/voicebox](https://github.com/jamiepine/voicebox)** ⭐0 (+565 today)  
-  开源 AI 语音工作室，支持语音克隆、听写、创作，一站式语音合成/识别工具。
-- **[shiyu-coder/Kronos](https://github.com/shiyu-coder/Kronos)** ⭐0 (+134 today)  
-  金融市场的“基础模型”：分析市场语言、预测趋势，专为量化交易和金融 NLP 设计。
-- **[harry0703/MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo)** ⭐98,669  
-  AI 短视频生成器，根据主题一键生成高清视频，内容创作领域的热门应用。
-- **[browser-use/browser-use](https://github.com/browser-use/browser-use)** ⭐106,134  
-  让 AI Agent 能像人类一样操作浏览器，自动化网页任务，打通 Agent 与互联网的交互。
+1. **[CherryHQ/cherry-studio](https://github.com/CherryHQ/cherry-studio)** ⭐ 48,885 → 全功能 AI 生产力工作室，集智能聊天、自主 agent、300+ 助手于一体，面向日常用户。
+2. **[firecrawl/firecrawl](https://github.com/firecrawl/firecrawl)** ⭐ 154,627 → 大规模网页抓取与搜索 API，专为 AI agent 设计，提供结构化数据输入。
+3. **[harry0703/MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo)** ⭐ 98,714 → 利用 AI 大模型自动生成高清短视频，内容创作者神器。
+4. **[jamiepine/voicebox](https://github.com/jamiepine/voicebox)** ⭐ 0 (+557 today) → 开源 AI 语音工作室，支持克隆、听写、创作，今日 Trending 新秀。
+5. **[santifer/career-ops](https://github.com/santifer/career-ops)** ⭐ 61,122 → 开源 AI 求职助手，自动扫描职位、评分、定制简历，本地运行。
+6. **[koala73/worldmonitor](https://github.com/koala73/worldmonitor)** ⭐ 0 (+4139 today) → 实时全球情报仪表盘，AI 驱动新闻聚合与地缘监控，今日新增 star 数最高（4139）。
 
 ### 🧠 大模型/训练（模型权重、训练框架、微调工具）
 
-- **[ollama/ollama](https://github.com/ollama/ollama)** ⭐176,662  
-  一键运行本地大模型，支持 Kimi、GLM、DeepSeek、Qwen 等最新模型，是个人开发者和研究者的首选部署工具。
-- **[huggingface/transformers](https://github.com/huggingface/transformers)** ⭐162,843  
-  🤗 模型定义框架，支持文本、视觉、音频、多模态模型的训练与推理，生态核心。
-- **[TauricResearch/TradingAgents](https://github.com/TauricResearch/TradingAgents)** ⭐94,110  
-  多 Agent LLM 金融交易框架，将大模型能力注入量化决策。
-- **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** ⭐218,959  
-  “与你一同成长的 Agent”，强调持续学习与记忆演化，代表 Agent 训练新方向。
-- **[galilai-group/stable-pretraining](https://github.com/galilai-group/stable-pretraining)** ⭐290  
-  可靠、最小化、可扩展的预训练库，专为基础模型和世界模型训练设计，适合研究团队。
-- **[skyzh/tiny-llm](https://github.com/skyzh/tiny-llm)** ⭐4,390  
-  “为系统工程师设计的 LLM 推理课”——从零实现 mini vLLM + Qwen，教学与实践价值极高。
+1. **[shiyu-coder/Kronos](https://github.com/shiyu-coder/Kronos)** ⭐ 0 (+137 today) → 金融领域基础模型，专为金融市场语言设计，今日 Trending 上榜，标志垂直领域大模型的新尝试。
+2. **[jingyaogong/minimind](https://github.com/jingyaogong/minimind)** ⭐ 53,747 → 2 小时从零训练 64M 参数的 LLM 教程，推动低成本教育与实践。
+3. **[open-compass/opencompass](https://github.com/open-compass/opencompass)** ⭐ 7,230 → 大模型评测平台，支持 100+ 数据集与主流模型，是模型选择的基准工具。
+4. **[skyzh/tiny-llm](https://github.com/skyzh/tiny-llm)** ⭐ 4,394 → 针对 Apple Silicon 的 LLM 推理 Serving 课程，手把手构建 tiny vLLM。
+5. **[Eigenwise/atomic-agents](https://github.com/Eigenwise/atomic-agents)** ⭐ 6,059 → 原子化构建 AI agent，强调模块化与可组合性，微调与 agent 结合的前沿方向。
 
 ### 🔍 RAG/知识库（向量数据库、检索增强、知识管理）
 
-- **[ragflow](https://github.com/infiniflow/ragflow)** ⭐85,699  
-  RAG 引擎标杆，融合 Agent 能力与知识图谱，为 LLM 提供高质量上下文层。
-- **[mem0ai/mem0](https://github.com/mem0ai/mem0)** ⭐61,486  
-  AI Agent 的通用记忆层，跨会话持久化上下文，提升 Agent 连续交互能力。
-- **[weaviate/weaviate](https://github.com/weaviate/weaviate)** ⭐16,635  
-  开源向量数据库，支持对象与向量混合搜索，云原生架构，适合大规模知识检索。
-- **[StarTrail-org/LEANN](https://github.com/StarTrail-org/LEANN)** ⭐12,717  
-  **MLsys2026 收录**：在个人设备上实现 RAG，存储压缩 97%，速度快且 100% 私有，预示端侧 RAG 新范式。
-- **[qdrant/qdrant](https://github.com/qdrant/qdrant)** ⭐33,507  
-  高性能向量数据库与搜索引擎，专为新一代 AI 应用设计，支持云服务。
-- **[meilisearch/meilisearch](https://github.com/meilisearch/meilisearch)** ⭐58,696  
-  闪电级搜索引擎，自带 AI 混合搜索，适合站点和应用快速集成全文+向量搜索。
-- **[PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)** ⭐86,042  
-  OCR 界“瑞士军刀”，将 PDF/图片转化为结构化数据，是 RAG 系统中的文档预处理利器。
+1. **[infiniflow/ragflow](https://github.com/infiniflow/ragflow)** ⭐ 85,717 → 领先的开源 RAG 引擎，融合 Agent 能力，提供高质量上下文层。
+2. **[open-webui/open-webui](https://github.com/open-webui/open-webui)** ⭐ 146,392 → 用户友好的 AI 界面，支持 Ollama、OpenAI 等后端，内置 RAG 聊天功能。
+3. **[milvus-io/milvus](https://github.com/milvus-io/milvus)** ⭐ 45,335 → 高性能云原生向量数据库，大规模 ANN 搜索的首选方案。
+4. **[qdrant/qdrant](https://github.com/qdrant/qdrant)** ⭐ 33,515 → 高性能向量搜索引擎，支持大规模部署，Rust 实现性能极佳。
+5. **[Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify)** ⭐ 94,028 → 将代码库、文档等转为可查询知识图谱，为 agent 提供精确上下文，无需向量存储。
+6. **[mem0ai/mem0](https://github.com/mem0ai/mem0)** ⭐ 61,500 → 通用 AI 智能体记忆层，跨会话持久化记忆，增强 agent 的长期交互能力。
+7. **[thedotmack/claude-mem](https://github.com/thedotmack/claude-mem)** ⭐ 88,279 → 跨 session 上下文持久化工具，为 coding agent 注入相关历史记忆，今日热度极高。
+8. **[PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)** ⭐ 86,069 → 轻量级 OCR 工具，可将图片/PDF 转为结构化数据供 LLM 使用，属于 RAG 数据预处理关键环节。
 
 ---
 
-## 趋势信号分析
+## 3. 趋势信号分析
 
-**1. AI 网关与模型路由工具成为爆发点**  
-`OmniRoute` 单日 1648 stars，`outlines` 362 stars，反映出开发者对“统一入口、智能调度”的强烈需求。随着开源模型百花齐放（Kimi、GLM、DeepSeek 等），一个能自动容错、负载均衡、压缩 Token 的网关层正成为刚需。这与近期“多模型共存”、“成本控制”的行业趋势高度吻合。
-
-**2. Agent 上下文优化进入精细化阶段**  
-`code-review-graph`（本地代码知识图，减少 Agent 无关上下文）、`i-have-adhd`（强制简洁输出）、`mem0`（持久记忆）等项目同一天上榜，说明社区已经从“能不能用 Agent”转向“如何让 Agent 更省 Token、更高效、更可靠”。Agent 的“经济性”和“用户友好度”成为新竞争点。
-
-**3. 边缘/无摄像头 AI 感知崭露头角**  
-`RuView` 基于 WiFi 信号实现生命体征监测与空间感知，无需摄像头，在隐私敏感场景（养老、安防）有颠覆性潜力。结合 `tiny-llm` 的 Apple Silicon 推理课程，边缘设备上运行 AI 正从实验走向实用。
-
-**4. 金融 AI 垂直赛道加速**  
-`Kronos`（金融基础模型）和 `TradingAgents`（多 Agent 交易框架）同日出现，表明金融领域正在系统性地采用大模型。金融数据的高价值与强结构化，使该领域成为 LLM 落地的天然试验田。
+- **“AI 网关”成为爆发点**：`OmniRoute` 今日新增 1651 星，其“一个端点、278+ 提供商、500+ 模型”的理念直击开发者多模型切换与成本优化的痛点。结合自动回退与压缩技术（节省 15-95% token），标志着 AI 基础设施层开始走向中间件化。类似趋势在 `Mirrowel/LLM-API-Key-Proxy`（统一网关）上也有所体现。
+- **上下文压缩与记忆管理成为新基建**：`headroomlabs-ai/headroom`（压缩工具输出减少 20-95% token）、`claude-mem`（跨 session 记忆）、`mem0`（通用记忆层）的 star 快速攀升，说明社区已认识到大模型 token 成本与长上下文瓶颈的严峻性，开始构建“记忆即服务”层。
+- **金融 AI 密集登场**：从 `Kronos`（金融基础模型）到 `TradingAgents`（多 agent 交易框架）再到 `daily_stock_analysis`（LLM 股票分析），金融领域成为 AI 智能体落地最活跃的垂直场景之一，可能与近期监管环境变化或量化交易需求爆发有关。
+- **本地优先与隐私意识持续升温**：`Graphify-Labs/graphify`（本地 AST 解析，无需向量库）、`code-review-graph`（本地代码智能图）、`OpenBB fintech`（开源数据平台）等项目强调本地运行与数据隐私，与 `ollama` 等本地推理工具形成呼应。
+- **Coding Agent 体验优化进入深水区**：`i-have-adhd`（防止 agent 隐藏答案）、`pi-web`（pi agent 的 Web UI）、`awesome-claude-skills`（技能集合）表明，开发者不再满足于 agent“能用”，开始追求“好用”——交互友好、输出可读、技能可插拔。
 
 ---
 
-## 社区关注热点
+## 4. 社区关注热点
 
-- **🌟 `OmniRoute`** — 免费、开源、多模型网关：如果你在使用多个 LLM 提供商或频繁切换模型，这个项目能大幅降低集成成本。单日 1648 stars 证明其价值，值得立即试用。
-- **🔥 `LEANN`（StarTrail-org）** — 97% 存储压缩的本地 RAG：MLsys2026 工作，首次实现个人设备上高效、私有、精准的检索增强。对隐私敏感型应用（医疗、金融）是重大突破。
-- **💡 `code-review-graph`** — 代码智能图 + MCP：为 AI 编码 Agent 提供精确上下文，经实测可减少 50% 以上无关注入。结合 `i-have-adhd` 使用，可显著改善 Agent 的代码审查与修复质量。
-- **📈 `Kronos`** — 金融基础模型：如果你关注量化交易或金融 NLP，这是目前最开源的专用模型之一。134 今日 stars 虽不显眼，但赛道潜力巨大。
-- **🎙️ `voicebox`** — AI 语音工作室：开源语音克隆/合成的易用性在提升，适合内容创作者、播客制作者快速生成高质量语音内容。
+- **🔥 `OmniRoute` — 多模型网关的新范式**  
+  今日单日 1651 星，它不只是 API 代理，还集成了压缩算法、自动回退、MCP/A2A 支持，可被 Cursor/Claude Code 直接使用，预计将成为 AI 工具链的标配层。
+
+- **🔥 `claude-mem` — 跨 session 记忆管理的标杆**  
+  88k star 且保持快速增长，它自动 capture agent 操作并压缩注入后续 session，解决 coding agent 的“健忘症”，是提升 agent 连续工作效率的关键。
+
+- **🔥 `worldmonitor` — AI 情报聚合的新应用**  
+  今日 4139 星位居 Trending 榜首，将 AI 新闻聚合、地缘政治监控与基础设施跟踪合为一体，展示了 AI 在实时数据洞察场景的独特价值，可能带动更多“AI + 数据决策”类项目。
+
+- **🔥 `Kronos` — 金融垂直领域基础模型**  
+  虽然今日新增仅 137 星，但其“金融市场的语言”定位标志着领域模型从通用走向专业化，结合 `TradingAgents` 的多智能体交易框架，金融 AI 生态正加速成型。
+
+- **📌 `code-review-graph` — 代码智能图降低 AI 上下文开销**  
+  通过构建本地代码图，让 AI coding agent 只读取必要上下文，已实测减少评审中的 token 消耗。随着代码库规模增长，这类工具将成为大型工程的刚需。
 
 ---
 *本日报由 [agents-radar](https://github.com/BlackJack-Cao/agents-radar) 自动生成。*
