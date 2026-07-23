@@ -1,6 +1,6 @@
 # AI Radar
 
-基于 GitHub Actions 的 AI 技术情报自动化项目。系统在工作日自动采集 AI 工具、Agent、模型、行业资讯及医疗 AI 动态，调用 OpenAI 兼容模型生成中英文日报，并发布到 GitHub Pages、提交到仓库，最后通过飞书机器人发送报告摘要和阅读链接。
+基于 GitHub Actions 的 AI 技术情报自动化项目。系统在工作日自动采集 AI 工具、Agent、模型、行业资讯及医疗 AI 动态，调用 OpenAI 兼容模型生成中文日报，并发布到 GitHub Pages、提交到仓库，最后通过飞书机器人发送报告摘要和阅读链接。英文报告可按需启用。
 
 - GitHub 仓库：[BlackJack-Cao/agents-radar](https://github.com/BlackJack-Cao/agents-radar)
 - Web UI：[https://blackjack-cao.github.io/agents-radar/](https://blackjack-cao.github.io/agents-radar/)
@@ -15,7 +15,7 @@ GitHub Actions 定时触发
         ↓
 按时间范围筛选、去重并整理原始数据
         ↓
-调用 OpenAI 兼容模型生成中英文分析
+调用 OpenAI 兼容模型生成中文分析（英文可选）
         ↓
 保存 Markdown 日报、更新 manifest.json 和 feed.xml
         ↓
@@ -62,7 +62,7 @@ GitHub Actions 定时触发
 | `ai-weekly.md` | 最近一周日报汇总 |
 | `ai-monthly.md` | 上月趋势汇总 |
 
-大部分报告同时生成英文版本，文件名以 `-en.md` 结尾。
+默认只生成中文报告。设置 `GENERATE_ENGLISH=true` 后，同时生成文件名以 `-en.md` 结尾的英文版本；历史英文报告不受此开关影响。
 
 ## Web UI
 
@@ -78,7 +78,7 @@ GitHub Actions 定时触发
 
 ## 飞书推送
 
-项目使用飞书群自定义机器人 Webhook 推送日报。消息包含当日各板块的重点摘要、中英文报告链接和 Web UI 入口。
+项目使用飞书群自定义机器人 Webhook 推送日报。消息包含当日各板块的中文重点摘要、报告链接和 Web UI 入口；启用英文生成后会同时附带英文报告链接。
 
 在 GitHub 仓库中进入：
 
@@ -118,6 +118,9 @@ Webhook 只应保存在 GitHub Actions Secrets 中，不要写入 README、`.env
 | `OPENAI_MODEL` | `gpt-5.4-mini` | 实际调用的模型名称 |
 | `LLM_CONCURRENCY` | `1` | 同时执行的模型请求数 |
 | `LLM_MIN_INTERVAL_MS` | `22000` | 两次模型请求的最小间隔，单位毫秒 |
+| `GENERATE_ENGLISH` | `false` | 默认只生成中文；设为 `true` 时恢复中英双语报告 |
+
+关闭英文生成不会删除历史 `*-en.md` 文件，只会停止后续英文报告和英文摘要的模型调用。
 
 当前工作流固定使用：
 
@@ -165,6 +168,7 @@ export LLM_PROVIDER=openai
 export OPENAI_API_KEY=your-api-key
 export OPENAI_BASE_URL=https://your-endpoint.example.com/v1
 export OPENAI_MODEL=your-model-name
+export GENERATE_ENGLISH=false
 
 # 可选：仅在需要创建 GitHub Issues 时设置
 export DIGEST_REPO=BlackJack-Cao/agents-radar

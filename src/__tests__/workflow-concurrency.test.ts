@@ -9,6 +9,14 @@ interface WorkflowConfig {
     "cancel-in-progress"?: boolean;
     queue?: string;
   };
+  jobs?: Record<
+    string,
+    {
+      steps?: Array<{
+        env?: Record<string, string>;
+      }>;
+    }
+  >;
 }
 
 const workflowFiles = ["daily-digest.yml", "weekly-digest.yml", "monthly-digest.yml"];
@@ -23,5 +31,14 @@ describe("digest workflow concurrency", () => {
       "cancel-in-progress": false,
       queue: "max",
     });
+  });
+
+  it.each(workflowFiles)("defaults %s to Chinese-only report generation", (fileName) => {
+    const filePath = path.join(process.cwd(), ".github", "workflows", fileName);
+    const workflow = load(fs.readFileSync(filePath, "utf-8")) as WorkflowConfig;
+    const steps = Object.values(workflow.jobs ?? {}).flatMap((job) => job.steps ?? []);
+    const generationStep = steps.find((step) => step.env?.["LLM_PROVIDER"]);
+
+    expect(generationStep?.env?.["GENERATE_ENGLISH"]).toBe("${{ vars.GENERATE_ENGLISH || 'false' }}");
   });
 });
