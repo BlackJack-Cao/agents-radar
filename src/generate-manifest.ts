@@ -2,10 +2,12 @@ import fs from "fs";
 import path from "path";
 import { marked } from "marked";
 import { REPORT_LABELS } from "./i18n.ts";
+import { buildSearchEntries, type SearchIndexEntry } from "./search-index.ts";
 
 const DIGESTS_DIR = "digests";
 const MANIFEST_PATH = "manifest.json";
 const FEED_PATH = "feed.xml";
+const SEARCH_INDEX_PATH = "search-index.json";
 const SITE_URL = "https://duanyytop.github.io/agents-radar";
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 const REPORT_FILES = [
@@ -36,7 +38,7 @@ const REPORT_FILES = [
 ] as const;
 const MAX_FEED_ITEMS = 30;
 
-interface DateEntry {
+export interface DateEntry {
   date: string;
   reports: string[];
 }
@@ -49,6 +51,22 @@ interface Manifest {
 interface ReportContent {
   summary: string;
   fullHtml: string;
+}
+
+export interface SearchIndex {
+  generated: string;
+  entries: SearchIndexEntry[];
+}
+
+export type CompactSearchEntry = [date: number, report: number, section: number, title: string, text: string];
+
+export interface CompactSearchIndex {
+  version: 1;
+  generated: string;
+  dates: string[];
+  reports: string[];
+  sections: string[];
+  entries: CompactSearchEntry[];
 }
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -64,6 +82,57 @@ export function toRfc822(date: Date): string {
 
 export function escapeXml(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+export function buildSearchIndex(
+  digestsDir: string,
+  dates: ReadonlyArray<{ date: string; reports: readonly string[] }>,
+): SearchIndex {
+  const entries: SearchIndexEntry[] = [];
+
+  for (const { date, reports } of dates) {
+    for (const report of reports) {
+      const filePath = path.join(digestsDir, date, `${report}.md`);
+      if (!fs.existsSync(filePath)) continue;
+      try {
+        entries.push(...buildSearchEntries(fs.readFileSync(filePath, "utf-8"), date, report));
+      } catch (error) {
+        console.error(`search index skipped ${date}/${report}: ${error}`);
+      }
+    }
+  }
+
+  return { generated: new Date().toISOString(), entries };
+}
+
+export function compactSearchIndex(index: SearchIndex): CompactSearchIndex {
+  const dates: string[] = [];
+  const reports: string[] = [];
+  const sections: string[] = [];
+  const dateIds = new Map<string, number>();
+  const reportIds = new Map<string, number>();
+  const sectionIds = new Map<string, number>();
+
+  const getId = (value: string, values: string[], ids: Map<string, number>): number => {
+    const existing = ids.get(value);
+    if (existing !== undefined) return existing;
+    const id = values.length;
+    values.push(value);
+    ids.set(value, id);
+    return id;
+  };
+
+  const entries = index.entries.map(
+    (entry): CompactSearchEntry => [
+      getId(entry.date, dates, dateIds),
+      getId(entry.report, reports, reportIds),
+      getId(entry.section, sections, sectionIds),
+      entry.title,
+      entry.text,
+    ],
+  );
+
+  return { version: 1, generated: index.generated, dates, reports, sections, entries };
 }
 
 async function getReportContent(date: string, report: string): Promise<ReportContent> {
@@ -117,6 +186,10 @@ async function main(): Promise<void> {
 
   fs.writeFileSync(MANIFEST_PATH, JSON.stringify(manifest, null, 2) + "\n");
   console.log(`manifest.json updated: ${entries.length} dates`);
+
+  const searchIndex = buildSearchIndex(DIGESTS_DIR, entries);
+  fs.writeFileSync(SEARCH_INDEX_PATH, JSON.stringify(compactSearchIndex(searchIndex)) + "\n");
+  console.log(`search-index.json updated: ${searchIndex.entries.length} entries`);
 
   // ── RSS Feed ──────────────────────────────────────────────────────────────────
 

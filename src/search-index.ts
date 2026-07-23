@@ -12,6 +12,10 @@ export interface SearchIndexEntry {
 const ANCHOR_TEXT_LIMIT = 160;
 const TITLE_LIMIT = 100;
 
+function truncateText(value: string, limit: number): string {
+  return Array.from(value).slice(0, limit).join("");
+}
+
 function decodeHtmlEntities(value: string): string {
   return value
     .replace(/&#(\d+);/g, (_, code: string) => String.fromCodePoint(Number(code)))
@@ -95,7 +99,7 @@ function findFirstStrong(tokens: Token[]): string {
 function titleFromText(text: string): string {
   const normalized = normalizeText(text);
   const firstPart = normalized.split(/(?:：|:\s|\s[—–-]\s|[。.!?]\s)/, 1)[0] ?? normalized;
-  return (firstPart || normalized).slice(0, TITLE_LIMIT).trim();
+  return truncateText(firstPart || normalized, TITLE_LIMIT).trim();
 }
 
 function currentSection(headings: string[]): string {
@@ -127,9 +131,9 @@ export function buildSearchEntries(markdown: string, date: string, report: strin
       date,
       report,
       section: currentSection(headings),
-      title: normalizeText(title).slice(0, TITLE_LIMIT),
+      title: truncateText(normalizeText(title), TITLE_LIMIT),
       text: cleanText,
-      anchorText: cleanText.slice(0, ANCHOR_TEXT_LIMIT),
+      anchorText: truncateText(cleanText, ANCHOR_TEXT_LIMIT),
     });
   };
 

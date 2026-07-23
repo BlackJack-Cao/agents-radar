@@ -92,6 +92,15 @@ DO_NOT_INDEX medical secret
 
     expect(entry?.anchorText).not.toContain("**");
     expect(entry?.anchorText).not.toContain("https://");
-    expect(entry?.anchorText.length).toBeLessThanOrEqual(160);
+    expect(Array.from(entry?.anchorText ?? "").length).toBeLessThanOrEqual(160);
+  });
+
+  it("does not split an emoji at the anchor boundary", () => {
+    const markdown = `# 日报\n\n${"a".repeat(159)}👍尾部`;
+    const entry = buildSearchEntries(markdown, "2026-07-23", "ai-medical").find((item) =>
+      item.text.startsWith("a"),
+    );
+
+    expect(entry?.anchorText).toBe(`${"a".repeat(159)}👍`);
   });
 });
