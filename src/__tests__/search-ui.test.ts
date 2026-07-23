@@ -102,4 +102,21 @@ describe("search navigation helpers", () => {
     expect(chooseTargetIndex(texts, "不存在的锚点", "医疗")).toBe(2);
     expect(chooseTargetIndex(texts, "不存在", "同样不存在")).toBe(-1);
   });
+
+  it("ignores markdown layout separators when matching an exact anchor", () => {
+    const texts = [
+      "openmed-labs/openmed-agent",
+      "后续关注方向: genzeonplatform 的 NER 系列 openmed-labs/openmed-agent 是否能获得实际部署测试",
+      "Healthcare NER医疗实体提取",
+    ];
+
+    expect(
+      chooseTargetIndex(
+        texts,
+        "后续关注方向 : genzeonplatform 的 NER 系列 | openmed-labs/openmed-agent 是否能获得实际部署测试",
+        "OpenMed",
+      ),
+    ).toBe(1);
+    expect(chooseTargetIndex(texts, "Healthcare NER | 医疗实体提取", "NER")).toBe(2);
+  });
 });

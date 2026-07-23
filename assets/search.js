@@ -13,6 +13,10 @@ export function normalizeSearchText(value) {
     .toLocaleLowerCase();
 }
 
+function normalizeAnchorText(value) {
+  return normalizeSearchText(value).replace(/[\s|]+/g, "");
+}
+
 export function hydrateSearchIndex(payload) {
   if (
     payload?.version !== 1 ||
@@ -82,15 +86,15 @@ export function makeSearchSnippet(text, query, maxLength = 160) {
 }
 
 export function chooseTargetIndex(texts, anchorText, query) {
-  const pickShortest = (needle) => {
+  const pickShortest = (needle, normalize = normalizeSearchText) => {
     if (!needle) return -1;
     const matches = texts
-      .map((text, index) => ({ index, text: normalizeSearchText(text) }))
+      .map((text, index) => ({ index, text: normalize(text) }))
       .filter((item) => item.text.includes(needle))
       .sort((a, b) => Array.from(a.text).length - Array.from(b.text).length || a.index - b.index);
     return matches[0]?.index ?? -1;
   };
 
-  const anchorMatch = pickShortest(normalizeSearchText(anchorText));
+  const anchorMatch = pickShortest(normalizeAnchorText(anchorText), normalizeAnchorText);
   return anchorMatch >= 0 ? anchorMatch : pickShortest(normalizeSearchText(query));
 }
