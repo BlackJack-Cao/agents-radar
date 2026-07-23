@@ -53,6 +53,7 @@ jobs:
           OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5.4-mini' }}
           LLM_CONCURRENCY: ${{ vars.LLM_CONCURRENCY || '1' }}
           LLM_MIN_INTERVAL_MS: ${{ vars.LLM_MIN_INTERVAL_MS || '22000' }}
+          GENERATE_ENGLISH: ${{ vars.GENERATE_ENGLISH || 'false' }}
           PRODUCTHUNT_TOKEN: ${{ secrets.PRODUCTHUNT_TOKEN }}
           DIGEST_REPO: ${{ github.repository }}
         run: pnpm start

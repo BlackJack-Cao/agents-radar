@@ -2,7 +2,7 @@
 
 [English](./README.md) | 中文
 
-每个工作日早晨自动运行的 GitHub Actions 工作流。聚合 11+ 组 AI 生态数据源，以中英双语每日简报的形式发布为 GitHub Issues 并提交为 Markdown 文件。每周和每月自动生成汇总报告。
+每个工作日早晨自动运行的 GitHub Actions 工作流。聚合 11+ 组 AI 生态数据源，默认生成中文每日简报并发布为 GitHub Issues、提交为 Markdown 文件。每周和每月自动生成汇总报告；也可通过配置恢复中英双语生成。
 
 ### 数据源
 
@@ -24,13 +24,13 @@
 
 **[https://duanyytop.github.io/agents-radar](https://duanyytop.github.io/agents-radar)**
 
-在线浏览所有历史简报，深色主题，无需登录。报告直接由本仓库的 Markdown 文件通过 GitHub Pages 渲染。每份报告支持中文 / 英文切换。
+在线浏览所有历史简报，深色主题，无需登录。报告直接由本仓库的 Markdown 文件通过 GitHub Pages 渲染。历史双语报告仍可切换语言，新报告默认只生成中文。
 
 ![Web UI](assets/web-zh.png) 
 
 ## Telegram 频道 & 飞书群
 
-订阅你常用的平台，每日简报生成后自动推送通知，附带所有报告的直达链接（中文 / 英文）。
+订阅你常用的平台，每日简报生成后自动推送通知，默认附带中文报告直达链接；启用英文生成后同时附带英文链接。
 
 <table>
   <tr>
@@ -233,6 +233,8 @@ openclaw_peers:
 | `FEISHU_WEBHOOK_URLS` | 可选 | 飞书自定义机器人 Webhook URL，多个用英文逗号分隔。设置后每次 digest 完成自动推送卡片通知到所有群 |
 
 > `GITHUB_TOKEN` 由 GitHub Actions 自动提供，无需手动添加。使用 `github-copilot` 作为 Provider 时，同一 `GITHUB_TOKEN` 也用于 LLM 调用。
+
+**报告语言变量**（可选）：在 **Settings → Secrets and variables → Actions → Variables** 中添加 `GENERATE_ENGLISH`。默认值为 `false`，只生成中文；设置为 `true` 时生成中英双语。关闭后历史 `*-en.md` 文件仍会保留。
 
 **配置 Telegram 推送**（可选）：
 1. 向 [@BotFather](https://t.me/BotFather) 创建 bot，复制 token
