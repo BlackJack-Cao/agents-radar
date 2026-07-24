@@ -28,8 +28,8 @@ import {
   buildPeersComparisonPrompt,
   buildSkillsPrompt,
 } from "./prompts.ts";
-import { buildTrendingPrompt, buildHighlightsPrompt, type ReportHighlights } from "./prompts-data.ts";
-import { callLlm, parseLlmJson, saveFile, autoGenFooter, LLM_TOKENS_TRENDING } from "./report.ts";
+import { buildTrendingPrompt, type ReportHighlights } from "./prompts-data.ts";
+import { callLlm, saveFile, autoGenFooter, LLM_TOKENS_TRENDING } from "./report.ts";
 import { buildCliReportContent, buildOpenclawReportContent } from "./report-builders.ts";
 import {
   saveWebReport,
@@ -54,6 +54,7 @@ import { loadConfig } from "./config.ts";
 import { toCstDateStr, toUtcStr } from "./date.ts";
 import { type Lang, MSG, ISSUE_LABELS, CLI_ISSUE_TITLE, OPENCLAW_ISSUE_TITLE } from "./i18n.ts";
 import { generateForReportLanguages, getReportLanguages } from "./report-languages.ts";
+import { generateReportHighlights } from "./highlights.ts";
 
 // ---------------------------------------------------------------------------
 // Repo config — loaded from config.yml, falls back to built-in defaults
@@ -463,7 +464,7 @@ async function main(): Promise<void> {
     }),
   );
 
-  // 5. Generate highlights for Telegram notification
+  // 5. Generate highlights for notifications
   const readReport = (name: string): string | undefined => {
     const p = path.join("digests", dateStr, name);
     return fs.existsSync(p) ? fs.readFileSync(p, "utf-8") : undefined;
@@ -506,21 +507,20 @@ async function main(): Promise<void> {
       // Keep fresh defaults when an existing highlights file is invalid.
     }
   }
-  const highlightResults = await Promise.allSettled(
-    reportLanguages.map((lang) => callLlm(buildHighlightsPrompt(reportsByLang[lang] ?? {}, lang), 2048)),
+  const highlightResults = await Promise.all(
+    reportLanguages.map(async (lang) => ({
+      lang,
+      result: await generateReportHighlights(reportsByLang[lang] ?? {}, lang, highlights[lang]),
+    })),
   );
-  for (const [index, res] of highlightResults.entries()) {
-    const lang = reportLanguages[index];
-    if (!lang) continue;
-    if (res.status !== "fulfilled") {
-      console.error(`  [highlights] ${lang} generation failed: ${res.reason}`);
-      continue;
+  for (const { lang, result } of highlightResults) {
+    result.errors.forEach((error, index) =>
+      console.error(`  [highlights] ${lang} request ${index + 1} failed: ${error}`),
+    );
+    if (result.missingReportIds.length) {
+      console.error(`  [highlights] ${lang} still missing: ${result.missingReportIds.join(", ")}`);
     }
-    try {
-      highlights[lang] = parseLlmJson<ReportHighlights>(res.value);
-    } catch (err) {
-      console.error(`  [highlights] ${lang} parse failed: ${err}`);
-    }
+    highlights[lang] = result.highlights;
   }
 
   const highlightsPath = saveFile(JSON.stringify(highlights, null, 2), dateStr, "highlights.json");
