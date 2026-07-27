@@ -63,6 +63,14 @@
       "可编辑图结构替代线性对话，精细控制LLM上下文",
       "本地低成本部署方案（Ollama+RAG）持续受关注",
       "自治错误预算概念提出，动态权限管理新思路"
+    ],
+    "ai-weekly": [
+      "Anthropic发布Claude Opus 5，价格仅为Fable 5一半",
+      "Anthropic推出Claude for Creative Work连接器",
+      "AMD投资Anthropic 50亿美元对抗英伟达",
+      "OpenAI与Anthropic联手呼吁监管开源模型",
+      "AI模型“逃逸”事件引发安全恐慌",
+      "OpenAI正式在ChatGPT中引入广告平台"
     ]
   },
   "en": {}
