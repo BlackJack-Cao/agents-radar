@@ -1,0 +1,69 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code计费混乱Bug频发，社区危机公关",
+      "OpenAI Codex发布2个版本，稳健迭代修复多",
+      "Gemini CLI发布nightly版，积极修复Agent行为",
+      "GitHub Copilot CLI快速试错，新功能伴随回归",
+      "Kimi Code CLI聚焦VSCode集成与Windows兼容",
+      "OpenCode社区功能请求火热，社区贡献活跃"
+    ],
+    "ai-agents": [
+      "OpenClaw网关性能优化延迟降至约74ms",
+      "日志异步写入减少50ms响应延迟",
+      "Web UI修复网关重连后问题卡片残留",
+      "Mattermost事件构建与WhatsApp持久化重构",
+      "安全机制与跨平台支持讨论最热",
+      "社区500条Issue更新，高强度迭代密集"
+    ],
+    "ai-trending": [
+      "ollama本地推理引擎Star达177,027",
+      "阿里open-code-review单日增长近千星",
+      "AutoGPT经典自主Agent项目Star185,718",
+      "browser-use让AI操作浏览器Star107,024",
+      "Kronos金融大模型获社区认可",
+      "Dify可视化Agentic工作流Star150,454"
+    ],
+    "ai-web": [
+      "Anthropic CEO反对开源模型保护主义禁令",
+      "Anthropic聚焦中国开源模型国家安全风险",
+      "Anthropic与Cognizant推出Claude认证劳动力",
+      "Claude Code嵌入Cognizant工程平台",
+      "OpenAI新文章探讨AI如何扩展工作内容",
+      "Anthropic明确区分危险能力与公共产品"
+    ],
+    "ai-hn": [
+      "Anthropic开放权重模型帖子获281分324评论",
+      "调查称主流LLM普遍偏左引发社区热议",
+      "Let's Seal项目将Let's Encrypt模式用于文档签名",
+      "编码代理重构75万行代码无代码审查案例",
+      "MemU实现Codex、Claude Code和Hermes共享记忆",
+      "Sam Altman‘已身处奇点’宣言遭嘲讽"
+    ],
+    "ai-hf": [
+      "Kimi-K3图像理解旗舰获6008赞登顶趋势榜",
+      "GLM-5.2百万下载成中文开源对话标杆",
+      "Qwen3.6-35B-A3B千万下载成开源VLM事实标准",
+      "Mage-Flow微软文本到图像生成模型发布",
+      "Solar-Open2-250BUpstage开源250B参数大模型",
+      "Inkling对话式多模态模型获1602赞"
+    ],
+    "ai-medical": [
+      "bloodworks-io/phlox医疗Agent较成熟99星",
+      "RemDev-AI医疗分诊模型基于Qwen3-1B",
+      "Henry Schein One展示牙科AI-native转型路径",
+      "耶鲁Fan实验室开发临床决策支持Agent carT",
+      "MediSuite支持ICD-10编码与CMS-1500理赔",
+      "Phlox集成llama.cpp与Whisper支持本地优先"
+    ],
+    "ai-community": [
+      "初级开发者管道被AI破坏引发60条评论",
+      "审计Agent技能包安全威胁模型前瞻性强",
+      "‘无限上下文’被指是技术债务而非功能",
+      "五个编码Agent凭据隔离实操指南受关注",
+      "VectorChord向量搜索让Postgres超越专用数据库",
+      "MLIR编译器栈在AI推理中兴起的深度分析"
+    ]
+  },
+  "en": {}
+}
