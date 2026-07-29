@@ -1,0 +1,77 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code 社区最活跃，10个热点Issue",
+      "OpenAI Codex 发布 Alpha 版本",
+      "计费不透明成所有工具共同痛点",
+      "Gemini CLI 出现 Token 浪费问题",
+      "Kimi CLI 免费用户登录被拒引发争议",
+      "各工具从对话式助手转向自主化代理"
+    ],
+    "ai-agents": [
+      "OpenClaw v2026.7.2-beta.5 聚焦状态安全与恢复",
+      "社区关注内存泄漏与会话数据丢失",
+      "隔离存储与崩溃可恢复SQLite快照",
+      "项目高度活跃，24小时1000条更新",
+      "安全性与稳定性焦虑成核心议题",
+      "修复Telegram回复丢失、Codex性能优化"
+    ],
+    "ai-trending": [
+      "AI智能体生态持续爆发，过半项目与代理相关",
+      "HuggingFace 推出 speech-to-speech 框架",
+      "微软推出代理治理工具箱首次登榜",
+      "本地化/自托管 AI 趋势明显",
+      "RAG 与知识图谱基础设施加速",
+      "ECC 项目今日新增 692 星获社区高度认可"
+    ],
+    "ai-web": [
+      "Claude 发现加密算法数学漏洞，攻击 HAWK 和 AES",
+      "Anthropic CEO 反对保护主义禁令，聚焦专制监控",
+      "OpenAI 集中发布 7 条企业级应用指南",
+      "两巨头战略分化：科研+政策 vs 平台+企业",
+      "Claude Mythos Preview 证明 AI 可攻击加密算法",
+      "OpenAI 发布《A Practical Guide To Building AI Agents》"
+    ],
+    "ai-hn": [
+      "OpenAI 开源 Codex Security 安全扫描工具库，评分275",
+      "Claude 发现密码学弱点获163分热议",
+      "社区对 Claude 隐私泄露事件愤怒",
+      "“Uncensored”开源模型更乐观引发对齐讨论",
+      "Flashpaper 自毁秘密共享工具展示",
+      "OpenAI 意外开源关键安全工具受社区欢迎"
+    ],
+    "ai-arxiv": [
+      "Kimi K3 发布：2.8T参数 MoE，百万 token 上下文",
+      "D-Score 从隐藏状态几何检测幻觉无需额外训练",
+      "多模态医疗理解研究全面铺开",
+      "智能体安全新范式：权限代数控制信息流",
+      "PIVOT 高效查询分组索引加速稀疏注意力",
+      "扩散模型蒸馏中无分类器引导理论突破"
+    ],
+    "ai-hf": [
+      "Kimi-K3 以 7939 点赞登顶，多模态+压缩技术",
+      "百度 Unlimited-OCR 下载量突破 270 万",
+      "Qwen3.6-35B-A3B 及其微调生态异常活跃",
+      "GLM-5.2 下载量 126 万，国产开源 LLM 强力竞争者",
+      "Microsoft Mage-Flow 统一图像生成与编辑模型",
+      "边缘 AI：Inflect-Micro-v2 轻量文本转语音"
+    ],
+    "ai-medical": [
+      "Xinyu-medical-agent 基于 LangGraph 的医疗咨询 Agent",
+      "SkinGraphAI 多智能体医疗助手支持多模态",
+      "多数医疗项目仍处早期，无临床验证",
+      "社区探索 Agentic 工作流与医疗场景结合",
+      "放射学模型微调成为热点方向",
+      "医疗 Agent 安全护栏和人工审核环节被强调"
+    ],
+    "ai-community": [
+      "Slopsquatting 定义：利用 AI 幻觉发起供应链攻击",
+      "AgentForger 漏洞：ChatGPT Workspace Agents 可被钓鱼",
+      "MCP 网关设计与密钥管理成工程焦点",
+      "Claude Opus 5 发布，安全说明藏细节",
+      "GPT-6 传闻被追踪核实",
+      "社区反思 Vibe Coding，探讨开源权重影响"
+    ]
+  },
+  "en": {}
+}
