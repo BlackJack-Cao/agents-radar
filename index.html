@@ -9,6 +9,7 @@
   <link rel="alternate" type="application/rss+xml" title="agents-radar RSS" href="./feed.xml">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <style>
     :root {
       --bg:         #0B0D14;
@@ -48,6 +49,7 @@
       line-height: 1.5;
       overflow: hidden;
     }
+    body.favorites-open { overflow: hidden !important; }
 
     /* ── Layout ── */
     #app { display: flex; flex-direction: column; height: 100vh; }
@@ -80,6 +82,15 @@
     .hdr-btn:hover { border-color: var(--accent); color: var(--accent); }
     .hdr-btn.icon-only { padding: 4px 7px; }
     .hdr-btn svg { display: block; }
+    #favoritesCount {
+      min-width: 16px; height: 16px; padding: 0 4px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 3px; background: var(--accent-bg); color: var(--accent);
+      font-size: 9px; line-height: 1;
+    }
+    [data-lucide] { display: none; }
+    .lucide-ready .icon-fallback { display: none; }
+    .lucide-ready svg.lucide { display: block; width: 14px; height: 14px; }
 
     /* ── Body ── */
     #body { display: flex; flex: 1; overflow: hidden; }
@@ -259,6 +270,105 @@
       outline: 2px solid var(--accent); outline-offset: 5px;
       background: var(--accent-bg); transition: outline-color 0.4s, background 0.4s;
     }
+    @keyframes favoriteJumpPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(232,160,61,0.16); }
+      50% { box-shadow: 0 0 0 8px rgba(232,160,61,0.22); }
+    }
+    .md .favorite-jump-target {
+      outline: 3px solid var(--accent); outline-offset: 5px;
+      background: rgba(232,160,61,0.18);
+      animation: favoriteJumpPulse 1s ease-in-out 3;
+      scroll-margin: 72px 0;
+    }
+    .md tr.favorite-jump-target td { background: rgba(232,160,61,0.18) !important; }
+    @media (prefers-reduced-motion: reduce) {
+      .md .favorite-jump-target { animation: none; }
+    }
+
+    /* ── Personal favorites ── */
+    .favorite-target { position: relative; padding-right: 34px !important; }
+    .favorite-target.favorite-summary { padding-right: 10px !important; }
+    .favorite-target.favorite-table-cell { padding-right: 42px !important; }
+    .favorite-btn {
+      width: 26px; height: 26px; padding: 0;
+      position: absolute; top: 1px; right: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 1px solid transparent; border-radius: 4px;
+      background: var(--bg); color: var(--dim); cursor: pointer; opacity: 0;
+      transition: opacity 0.15s, color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .favorite-summary > .favorite-btn { position: static; margin-left: auto; flex-shrink: 0; }
+    .favorite-table-cell > .favorite-btn { top: 5px; right: 6px; }
+    .favorite-target:hover > .favorite-btn,
+    .favorite-target:focus-within > .favorite-btn,
+    .favorite-btn.active { opacity: 1; }
+    .favorite-btn:hover, .favorite-btn:focus-visible, .favorite-btn.active {
+      outline: none; color: var(--accent); border-color: var(--accent); background: var(--accent-bg);
+    }
+    .favorite-btn.active svg { fill: currentColor; }
+    #favoritesBackdrop {
+      position: fixed; inset: 0; z-index: 40; background: rgba(0,0,0,0.48);
+    }
+    #favoritesBackdrop[hidden], #favoritesPanel[hidden], #favoriteStatus[hidden] { display: none; }
+    #favoritesPanel {
+      position: fixed; z-index: 41; top: 0; right: 0; bottom: 0;
+      width: min(420px, 100vw); display: flex; flex-direction: column;
+      background: var(--bg-side); border-left: 1px solid var(--border);
+      box-shadow: -16px 0 40px rgba(0,0,0,0.28);
+    }
+    .favorites-head {
+      height: 52px; padding: 0 16px; display: flex; align-items: center; gap: 10px;
+      border-bottom: 1px solid var(--border); flex-shrink: 0;
+    }
+    .favorites-title { flex: 1; font-size: 13px; font-weight: 700; }
+    .favorites-total { color: var(--muted); font-size: 10px; }
+    .favorites-close, .favorites-reset, .favorite-record-remove {
+      border: 1px solid var(--border); border-radius: 4px;
+      background: none; color: var(--muted); cursor: pointer; font-family: inherit;
+    }
+    .favorites-close, .favorite-record-remove {
+      width: 30px; height: 30px; padding: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .favorites-close:hover, .favorites-close:focus-visible,
+    .favorite-record-remove:hover, .favorite-record-remove:focus-visible {
+      outline: none; border-color: var(--accent); color: var(--accent);
+    }
+    #favoritesList { flex: 1; overflow-y: auto; padding: 12px; }
+    .favorites-empty, .favorites-error {
+      min-height: 180px; padding: 24px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+      color: var(--muted); text-align: center; font-size: 11px; line-height: 1.7;
+    }
+    .favorites-error { color: var(--text); }
+    .favorites-reset { padding: 7px 10px; color: var(--accent); border-color: var(--accent); }
+    .favorite-record {
+      display: grid; grid-template-columns: minmax(0,1fr) 30px; gap: 8px;
+      margin-bottom: 8px; padding: 10px; border: 1px solid var(--border);
+      border-radius: 6px; background: var(--bg);
+    }
+    .favorite-record-main {
+      min-width: 0; border: none; background: none; color: var(--text);
+      text-align: left; cursor: pointer; font-family: inherit;
+    }
+    .favorite-record-main:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
+    .favorite-record-meta { color: var(--accent); font-size: 9px; }
+    .favorite-record-title {
+      margin-top: 4px; overflow-wrap: anywhere; font-size: 11px; font-weight: 700; line-height: 1.5;
+    }
+    .favorite-record-snippet {
+      margin-top: 4px; color: var(--muted); overflow: hidden; overflow-wrap: anywhere;
+      font-family: 'Source Serif 4', Georgia, serif; font-size: 12px; line-height: 1.5;
+      display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3;
+    }
+    #favoriteStatus {
+      position: fixed; z-index: 50; right: 18px; bottom: 18px;
+      max-width: min(360px, calc(100vw - 36px)); padding: 9px 12px;
+      border: 1px solid var(--border); border-radius: 4px;
+      background: var(--bg-side); color: var(--text);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.28); font-size: 10px; line-height: 1.5;
+    }
+    #favoriteStatus.error { border-color: #C45454; color: #E58A8A; }
 
     /* ── Mobile ── */
     #mob-toggle { display: none; }
@@ -290,7 +400,12 @@
       .side-label { margin-top: 8px; }
       #content { padding: 20px 16px 48px; }
       .md { font-size: 15px; }
+      .md table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
       .search-result { padding: 10px 16px; }
+      .favorite-btn { opacity: 1; }
+      #favoritesPanel { width: 100vw; }
+      .favorite-record { padding: 10px 8px; }
+      #favoriteStatus { right: 12px; bottom: 12px; max-width: calc(100vw - 24px); }
     }
   </style>
 </head>
@@ -303,6 +418,10 @@
     </div>
     <div class="hdr-right">
       <div class="signal"></div>
+      <button id="favoritesBtn" class="hdr-btn" type="button" aria-controls="favoritesPanel" aria-expanded="false" title="我的收藏">
+        <i data-lucide="star" aria-hidden="true"></i><span class="icon-fallback" aria-hidden="true">☆</span>
+        <span>收藏</span><span id="favoritesCount">0</span>
+      </button>
       <a id="rssLink" class="hdr-btn" href="./feed.xml" title="RSS Feed"><span class="hdr-icon">⊕</span>RSS</a>
       <button id="themeBtn" class="hdr-btn"><span class="hdr-icon">◐</span><span class="hdr-label">LIGHT</span></button>
     </div>
@@ -330,6 +449,19 @@
   </div>
 </div>
 
+<div id="favoritesBackdrop" hidden></div>
+<aside id="favoritesPanel" role="dialog" aria-modal="true" aria-labelledby="favoritesTitle" hidden>
+  <div class="favorites-head">
+    <div id="favoritesTitle" class="favorites-title">我的收藏</div>
+    <div id="favoritesTotal" class="favorites-total">0 条</div>
+    <button id="favoritesClose" class="favorites-close" type="button" aria-label="关闭收藏列表">
+      <i data-lucide="x" aria-hidden="true"></i><span class="icon-fallback" aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div id="favoritesList"></div>
+</aside>
+<div id="favoriteStatus" role="status" aria-live="polite" hidden></div>
+
 <script type="module">
 import {
   chooseTargetIndex,
@@ -337,6 +469,15 @@ import {
   makeSearchSnippet,
   searchEntries as findSearchEntries,
 } from './assets/search.js';
+import {
+  FAVORITES_STORAGE_KEY,
+  createEmptyFavoriteState,
+  createFavoriteItemId,
+  isFavorite,
+  listFavorites,
+  parseFavoriteState,
+  toggleFavorite,
+} from './assets/favorites.js';
 
 const { marked, DOMPurify } = window;
 marked.use({ breaks: true, gfm: true });
@@ -414,12 +555,295 @@ let searchReady = false;
 let searchUnavailable = false;
 let searchQuery = '';
 let searchDebounce = null;
+let favoriteState = createEmptyFavoriteState();
+let favoriteStorageError = null;
+let favoriteStatusTimer = null;
+let favoritePreviousFocus = null;
+let targetHighlightTimer = null;
 const reportCache = new Map();
 
 const searchInput = document.getElementById('searchInput');
 const searchStatus = document.getElementById('searchStatus');
 const searchResults = document.getElementById('searchResults');
 const nav = document.getElementById('nav');
+const favoritesBtn = document.getElementById('favoritesBtn');
+const favoritesCount = document.getElementById('favoritesCount');
+const favoritesBackdrop = document.getElementById('favoritesBackdrop');
+const favoritesPanel = document.getElementById('favoritesPanel');
+const favoritesClose = document.getElementById('favoritesClose');
+const favoritesTotal = document.getElementById('favoritesTotal');
+const favoritesList = document.getElementById('favoritesList');
+const favoriteStatus = document.getElementById('favoriteStatus');
+
+function refreshIcons() {
+  if (!window.lucide?.createIcons) return;
+  window.lucide.createIcons({ attrs: { 'stroke-width': 1.8, 'aria-hidden': 'true' } });
+  htmlEl.classList.add('lucide-ready');
+}
+
+function truncateText(value, maxLength) {
+  const chars = Array.from(String(value ?? ''));
+  return chars.length <= maxLength ? chars.join('') : `${chars.slice(0, maxLength - 1).join('')}…`;
+}
+
+function showFavoriteStatus(message, type = 'info') {
+  clearTimeout(favoriteStatusTimer);
+  favoriteStatus.textContent = message;
+  favoriteStatus.classList.toggle('error', type === 'error');
+  favoriteStatus.hidden = false;
+  favoriteStatusTimer = window.setTimeout(() => { favoriteStatus.hidden = true; }, 3200);
+}
+
+function updateFavoriteButtons() {
+  document.querySelectorAll('.favorite-btn[data-item-id]').forEach(button => {
+    const active = isFavorite(favoriteState, button.dataset.itemId);
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', String(active));
+    button.setAttribute('aria-label', active ? '取消收藏此条目' : '收藏此条目');
+    button.title = active ? '取消收藏' : '收藏';
+  });
+}
+
+function closeFavoritesPanel() {
+  favoritesPanel.hidden = true;
+  favoritesBackdrop.hidden = true;
+  favoritesBtn.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('favorites-open');
+  favoritePreviousFocus?.focus?.();
+  favoritePreviousFocus = null;
+}
+
+function removeFavorite(item) {
+  const nextState = toggleFavorite(favoriteState, item);
+  if (persistFavoriteState(nextState)) showFavoriteStatus('已取消收藏');
+}
+
+function renderFavoritesPanel() {
+  favoritesList.replaceChildren();
+  const favorites = listFavorites(favoriteState);
+  favoritesTotal.textContent = `${favorites.length} 条`;
+
+  if (favoriteStorageError) {
+    const error = document.createElement('div');
+    error.className = 'favorites-error';
+    const message = document.createElement('div');
+    message.textContent = `本地收藏无法读取：${favoriteStorageError}`;
+    const reset = document.createElement('button');
+    reset.type = 'button';
+    reset.className = 'favorites-reset';
+    reset.textContent = '重置本地收藏';
+    reset.onclick = resetFavoriteStorage;
+    error.append(message, reset);
+    favoritesList.appendChild(error);
+    return;
+  }
+
+  if (!favorites.length) {
+    const empty = document.createElement('div');
+    empty.className = 'favorites-empty';
+    empty.innerHTML = '<span aria-hidden="true">☆</span><span>还没有收藏条目</span>';
+    favoritesList.appendChild(empty);
+    return;
+  }
+
+  for (const item of favorites) {
+    const record = document.createElement('div');
+    record.className = 'favorite-record';
+    const main = document.createElement('button');
+    main.type = 'button';
+    main.className = 'favorite-record-main';
+    const meta = document.createElement('div');
+    meta.className = 'favorite-record-meta';
+    meta.textContent = `${item.date} · ${LABELS[item.report] || item.report}`;
+    const title = document.createElement('div');
+    title.className = 'favorite-record-title';
+    title.textContent = item.title;
+    const snippet = document.createElement('div');
+    snippet.className = 'favorite-record-snippet';
+    snippet.textContent = item.snippet;
+    main.append(meta, title, snippet);
+    main.onclick = () => {
+      closeFavoritesPanel();
+      loadReport(item.date, item.report, true, {
+        itemId: item.id,
+        anchorText: item.anchorText,
+        query: item.title,
+        missingMessage: '条目内容可能已更新，已打开原报告',
+      });
+    };
+
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.className = 'favorite-record-remove';
+    remove.setAttribute('aria-label', `取消收藏 ${item.title}`);
+    remove.title = '取消收藏';
+    remove.innerHTML = '<i data-lucide="trash-2" aria-hidden="true"></i><span class="icon-fallback" aria-hidden="true">×</span>';
+    remove.onclick = () => removeFavorite(item);
+    record.append(main, remove);
+    favoritesList.appendChild(record);
+  }
+  refreshIcons();
+}
+
+function updateFavoritesUi() {
+  favoritesCount.textContent = String(listFavorites(favoriteState).length);
+  updateFavoriteButtons();
+  renderFavoritesPanel();
+}
+
+function loadFavoriteStorage(raw = undefined) {
+  try {
+    favoriteState = parseFavoriteState(raw === undefined ? localStorage.getItem(FAVORITES_STORAGE_KEY) : raw);
+    favoriteStorageError = null;
+  } catch (error) {
+    favoriteState = createEmptyFavoriteState();
+    favoriteStorageError = error instanceof Error ? error.message : String(error);
+  }
+  updateFavoritesUi();
+}
+
+function persistFavoriteState(nextState) {
+  if (favoriteStorageError) {
+    showFavoriteStatus('请先在“我的收藏”中重置损坏的本地数据', 'error');
+    openFavoritesPanel();
+    return false;
+  }
+  try {
+    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(nextState));
+    favoriteState = nextState;
+    updateFavoritesUi();
+    return true;
+  } catch (error) {
+    console.error('Favorite storage write failed:', error);
+    showFavoriteStatus('收藏保存失败，请检查浏览器存储权限', 'error');
+    return false;
+  }
+}
+
+function resetFavoriteStorage() {
+  const empty = createEmptyFavoriteState();
+  try {
+    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(empty));
+    favoriteState = empty;
+    favoriteStorageError = null;
+    updateFavoritesUi();
+    showFavoriteStatus('本地收藏已重置');
+  } catch (error) {
+    console.error('Favorite storage reset failed:', error);
+    showFavoriteStatus('无法重置收藏，请检查浏览器存储权限', 'error');
+  }
+}
+
+function openFavoritesPanel() {
+  favoritePreviousFocus = document.activeElement;
+  favoritesBackdrop.hidden = false;
+  favoritesPanel.hidden = false;
+  favoritesBtn.setAttribute('aria-expanded', 'true');
+  document.body.classList.add('favorites-open');
+  renderFavoritesPanel();
+  favoritesClose.focus();
+}
+
+function itemText(element) {
+  const clone = element.cloneNode(true);
+  clone.querySelectorAll?.('.favorite-btn').forEach(button => button.remove());
+  return String(clone.textContent || '').replace(/\s+/g, ' ').trim();
+}
+
+function isAfterFirstSection(element, root) {
+  const firstSection = root.querySelector('h2');
+  return !firstSection || !!(firstSection.compareDocumentPosition(element) & Node.DOCUMENT_POSITION_FOLLOWING);
+}
+
+function isFavoriteCandidate(element, root) {
+  if (!isAfterFirstSection(element, root)) return false;
+  const details = element.closest('details');
+  if (details && !element.matches('summary')) return false;
+  if (element.matches('li') && element.parentElement?.closest('li')) return false;
+  if (element.matches('p') && element.parentElement !== root) return false;
+  const text = itemText(element);
+  if (text.length < 8) return false;
+  return !/本(日报|报告)由.+自动生成|本报告基于.+仅供参考|automatically generated/i.test(text);
+}
+
+function favoriteTitle(element, text) {
+  if (element.matches('tr')) return truncateText(element.cells?.[0]?.textContent || text, 90);
+  const emphasized = element.querySelector('strong, a');
+  return truncateText(emphasized?.textContent || text, 90);
+}
+
+function toggleFavoriteItem(item) {
+  if (favoriteStorageError) {
+    showFavoriteStatus('本地收藏数据已损坏，请先重置', 'error');
+    openFavoritesPanel();
+    return;
+  }
+  const adding = !isFavorite(favoriteState, item.id);
+  const nextState = toggleFavorite(favoriteState, item);
+  if (persistFavoriteState(nextState)) showFavoriteStatus(adding ? '已收藏' : '已取消收藏');
+}
+
+function enhanceFavoriteItems(date, report) {
+  const root = document.querySelector('.md');
+  if (!root) return;
+  const occurrences = new Map();
+  const candidates = Array.from(root.querySelectorAll('p, li, summary, tbody > tr'))
+    .filter(element => isFavoriteCandidate(element, root));
+
+  for (const element of candidates) {
+    const text = itemText(element);
+    const occurrenceKey = text.normalize('NFKC').replace(/\s+/g, ' ').trim().toLocaleLowerCase();
+    const occurrence = occurrences.get(occurrenceKey) || 0;
+    occurrences.set(occurrenceKey, occurrence + 1);
+    const item = {
+      id: createFavoriteItemId(date, report, text, occurrence),
+      date,
+      report,
+      title: favoriteTitle(element, text),
+      anchorText: truncateText(text, 160),
+      snippet: truncateText(text, 180),
+    };
+
+    let container = element;
+    if (element.matches('tr')) {
+      container = element.lastElementChild;
+      if (!container) continue;
+      container.classList.add('favorite-table-cell');
+    } else if (element.matches('summary')) {
+      container.classList.add('favorite-summary');
+    }
+    container.classList.add('favorite-target');
+    element.dataset.favoriteId = item.id;
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'favorite-btn';
+    button.dataset.itemId = item.id;
+    button.innerHTML = '<i data-lucide="star" aria-hidden="true"></i><span class="icon-fallback" aria-hidden="true">☆</span>';
+    button.onclick = event => {
+      event.preventDefault();
+      event.stopPropagation();
+      toggleFavoriteItem(item);
+    };
+    container.appendChild(button);
+  }
+  updateFavoriteButtons();
+  refreshIcons();
+}
+
+favoritesBtn.onclick = openFavoritesPanel;
+favoritesClose.onclick = closeFavoritesPanel;
+favoritesBackdrop.onclick = closeFavoritesPanel;
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && !favoritesPanel.hidden) closeFavoritesPanel();
+});
+window.addEventListener('storage', event => {
+  if (event.key !== FAVORITES_STORAGE_KEY) return;
+  loadFavoriteStorage(event.newValue);
+  showFavoriteStatus('收藏已在其他标签页更新');
+});
+loadFavoriteStorage();
+refreshIcons();
 
 function setSearchStatus(text) {
   searchStatus.textContent = text || '';
@@ -548,7 +972,10 @@ function setContent(html) {
 function clearSearchTarget() {
   const root = document.querySelector('.md');
   if (!root) return;
-  root.querySelectorAll('.search-target').forEach((element) => element.classList.remove('search-target'));
+  clearTimeout(targetHighlightTimer);
+  root.querySelectorAll('.search-target, .favorite-jump-target').forEach(element => {
+    element.classList.remove('search-target', 'favorite-jump-target');
+  });
   root.querySelectorAll('mark.search-mark').forEach((mark) => {
     mark.replaceWith(document.createTextNode(mark.textContent || ''));
   });
@@ -596,24 +1023,30 @@ function locateSearchTarget(target) {
   const candidates = Array.from(
     root.querySelectorAll('h1, h2, h3, h4, h5, h6, p, li, tr, summary, blockquote'),
   );
-  const index = chooseTargetIndex(
-    candidates.map((element) => element.textContent || ''),
-    target.anchorText,
-    target.query,
-  );
-  if (index < 0) return false;
+  let element = target.itemId
+    ? candidates.find(candidate => candidate.dataset.favoriteId === target.itemId)
+    : null;
+  if (!element) {
+    const index = chooseTargetIndex(
+      candidates.map(candidate => candidate.textContent || ''),
+      target.anchorText,
+      target.query,
+    );
+    if (index < 0) return false;
+    element = candidates[index];
+  }
 
-  const element = candidates[index];
   const details = element.closest('details');
   if (details) details.open = true;
   highlightTargetText(element, target.query);
-  element.classList.add('search-target');
+  const targetClass = target.itemId ? 'favorite-jump-target' : 'search-target';
+  element.classList.add(targetClass);
   const scrollDelay = window.matchMedia('(max-width: 680px)').matches ? 350 : 0;
-  window.setTimeout(
-    () => element.scrollIntoView({ behavior: 'smooth', block: 'center' }),
-    scrollDelay,
+  window.setTimeout(() => element.scrollIntoView({ behavior: 'smooth', block: 'center' }), scrollDelay);
+  targetHighlightTimer = window.setTimeout(
+    () => element.classList.remove(targetClass),
+    target.itemId ? 4200 : 2400,
   );
-  window.setTimeout(() => element.classList.remove('search-target'), 2400);
   return true;
 }
 
@@ -621,8 +1054,11 @@ async function loadReport(date, report, push = true, target = null) {
   const key = `${date}/${report}`;
   if (key === currentKey) {
     document.getElementById('sidebar').classList.remove('open');
-    if (target) locateSearchTarget(target);
-    return;
+    if (target) {
+      const found = locateSearchTarget(target);
+      if (!found && target.missingMessage) showFavoriteStatus(target.missingMessage, 'error');
+    }
+    return true;
   }
   currentKey = key;
 
@@ -667,9 +1103,15 @@ async function loadReport(date, report, push = true, target = null) {
     }
     const safe = renderMarkdown(raw);
     setContent(`<div class="md fade">${safe}</div>`);
-    if (target) locateSearchTarget(target);
+    enhanceFavoriteItems(date, report);
+    if (target) {
+      const found = locateSearchTarget(target);
+      if (!found && target.missingMessage) showFavoriteStatus(target.missingMessage, 'error');
+    }
+    return true;
   } catch (e) {
     setContent(`<div class="msg"><div class="msg-icon">⚠️</div><div>加载失败：${e.message}</div></div>`);
+    return false;
   }
 }
 
