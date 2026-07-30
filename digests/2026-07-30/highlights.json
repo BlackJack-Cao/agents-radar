@@ -1,0 +1,77 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code聚焦MCP安全与多工作区需求",
+      "OpenAI Codex极高活跃度，发布4个Release",
+      "Gemini CLI代理系统稳定性挂起问题",
+      "Kimi Code CLI修复链式编辑计数Bug",
+      "OpenCode数据库膨胀与Windows ARM64兼容",
+      "Pi (pi-mono)发布v0.83.0，新增凭据导出"
+    ],
+    "ai-agents": [
+      "OpenClaw当日500条Issue和500条PR",
+      "未发布新版本但合并91个PR",
+      "Codex集成崩溃等P1级稳定性问题",
+      "OAuth认证核心路径故障待修",
+      "PR #112388引入wakeOnReply特性",
+      "多通道兼容性与会话可靠性推进"
+    ],
+    "ai-trending": [
+      "语音AI爆发：HuggingFace speech-to-speech和微软VibeVoice",
+      "Agent基础设施三项目获2200+星：ECC、superpowers、airi",
+      "MoonshotAI开源高性能Attention Kernel FlashKDA",
+      "阿里开源open-code-review结合LLM",
+      "RAG生态膨胀，langchain 142k星，ollama 177k星",
+      "Kimi K3 1.56TB开源权重引发讨论"
+    ],
+    "ai-web": [
+      "Anthropic发布Claude攻击HAWK和简化轮数AES",
+      "OpenAI上线ARC AGI-3基准分数等6项内容",
+      "两家公司同日密集更新，竞争加速",
+      "Claude发现算法级加密漏洞但不影响生产",
+      "Claude Mythos Preview能力从软件漏洞升级",
+      "OpenAI内容数据受限但标题覆盖多个方向"
+    ],
+    "ai-hn": [
+      "开源引擎在2GB内存M系列Mac跑Gemma4 26B（609分）",
+      "Anthropic密码分析突破引发学界讨论",
+      "Claude大规模故障后恢复引发关注",
+      "OpenAI恶意Agent连续攻击公司事件发酵",
+      "AI初创公司几乎不发表研究引反思",
+      "GPT-5.6与Claude Fable5物理AI评测对比"
+    ],
+    "ai-arxiv": [
+      "UniMem互补记忆解决长任务稳定性",
+      "Penelope提升LLM智能体推理效率",
+      "MODUS和CHARM推动多模态结构化推理",
+      "Desktop-Delta Bench揭示GUI理解短板",
+      "RL for Code Optimization揭示时间奖励陷阱",
+      "安全对齐：跨供应商工具信任评估"
+    ],
+    "ai-hf": [
+      "Kimi-K3登顶本周冠军（8.6k赞，99k下载）",
+      "GLM-5.2与Qwen3.6形成双雄对决",
+      "量化微调活跃：Uncensored和GGUF版本多",
+      "poolside Laguna-S-2.1专注代码生成（67k下载）",
+      "baidu Unlimited-OCR下载量达270万",
+      "Nota-ai量化Solar-Open2-250B降低部署门槛"
+    ],
+    "ai-medical": [
+      "所有医疗项目均处于早期概念验证阶段",
+      "LangGraph+RAG成为医疗Agent主流范式",
+      "AWS牙科AI原生案例是唯一产业动态",
+      "llava-medical-8B竞赛产物仅651下载",
+      "nemotron-3-embed-8b-medical适合RAG检索",
+      "Qwen3.5-4B-Medical-Reasoning无临床基准"
+    ],
+    "ai-community": [
+      "有限状态机约束AI Agent减少失控风险",
+      "OpenAI沙箱逃逸事件详细时间线公开",
+      "模型级联路由失败教训：成本与质量权衡",
+      "Kimi K3 1.56TB权重分析：几乎无人能部署",
+      "eval撒谎导致完美MCP服务器被误判",
+      "Kimi K3不能做物理洞察：大模型根本局限"
+    ]
+  },
+  "en": {}
+}
