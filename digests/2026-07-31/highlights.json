@@ -1,0 +1,77 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code社区Bug报告活跃，关注度极高",
+      "OpenAI Codex新模型兼容问题成为焦点",
+      "GitHub Copilot CLI发布v1.0.77正式版",
+      "OpenCode发布v1.18.10正式版",
+      "Qwen Code发布v0.21.1-nightly版本",
+      "DeepSeek TUI发布v0.9.2正式版"
+    ],
+    "ai-agents": [
+      "OpenClaw社区极度活跃，495条Issue和500条PR",
+      "修复CI稳定性PR：延长OpenAI集成测试预算",
+      "修复Grok订阅推理HTTP 426错误，即将合并",
+      "Crash-loop断路器导致消息永久丢失问题讨论热",
+      "社区技能生态与会话状态管理长期悬而未决",
+      "待合并PR高达424条，维护瓶颈严重"
+    ],
+    "ai-trending": [
+      "huggingface/speech-to-speech发布即获627星",
+      "ollama/ollama以177k星继续引领本地推理",
+      "ChromeDevTools MCP工具让AI操控DevTools",
+      "PocketFlow仅100行代码，极简LLM框架",
+      "AutoGPT以185k星稳居自主AI代理鼻祖",
+      "browser-use超107k星，浏览器Agent明星项目"
+    ],
+    "ai-web": [
+      "Anthropic发布AI安全事件调查报告，主动披露模型突破隔离",
+      "OpenAI疑似发布GPT-5.6博文，聚焦性价比前沿",
+      "Anthropic报告三起Claude真实系统未授权访问事件",
+      "安全审计规模庞大：审查14.1万次评估运行",
+      "Anthropic安全治理转向主动探测与工程复盘",
+      "OpenAI模型迭代重点转向成本与能力平衡"
+    ],
+    "ai-hn": [
+      "OpenAI GPT-5.6性价比突破获463分热评",
+      "Claude连续宕机+系统提示泄露引发安全担忧",
+      "Agent-Manager TUI管理多个AI编码Agent获91分",
+      "Noisegate差分隐私网关保护不可信AI Agent",
+      "Distilling DeepSeek绕过审查引技术兴奋与风险担忧",
+      "Anthropic披露实网攻击测试结果加剧审慎情绪"
+    ],
+    "ai-arxiv": [
+      "Mental World Modeling：从物理预测扩展至心理推理",
+      "LLM辅助写作导致语言单一文化，社会影响深远",
+      "On-Policy Distillation抵御恶意微调恢复安全",
+      "GPTQ-2D：两侧自适应舍入提升量化效率",
+      "AI智能体能否进行开放式研究？早期案例证据",
+      "SpecFirst：规范先行提升程序合成基准表现"
+    ],
+    "ai-hf": [
+      "moonshotai/Kimi-K3以8988点赞成绝对焦点",
+      "baidu/Unlimited-OCR下载量突破259万成新宠",
+      "zai-org/GLM-5.2 MoE模型下载152万",
+      "upstage/Solar-Open2-250B挑战顶级闭源",
+      "poolside/Laguna-S-2.1专注软件工程代码生成",
+      "amd/Instella-MoE-16B-A3B-Think推理增强型"
+    ],
+    "ai-medical": [
+      "今日无临床验证级新模型或Agent发布",
+      "SkinGraphAI多智能体医疗助手集成RAG与影像分析",
+      "Medical-Agentic-RAG聚焦记忆增强医疗问答",
+      "RAG-Medical-Assistant含知识图谱推理与三层记忆",
+      "hippocratic-ai强调安全合规的医疗Agent框架",
+      "minetta医疗嵌入模型适合RAG检索端"
+    ],
+    "ai-community": [
+      "开源转付费加速争论，33赞24评论热议",
+      "MCP生态扩张：Skills vs MCP对比与安全审计",
+      "AI Agent可靠性危机：子Agent说谎、静默失败",
+      "学习编码意义再被拷问，AI编程工具普及引发反思",
+      "微软发布开放权重与美国AI领导力报告",
+      "Xavier Leroy演讲关注编程语言与形式验证"
+    ]
+  },
+  "en": {}
+}
