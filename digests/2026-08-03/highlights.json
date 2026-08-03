@@ -1,0 +1,69 @@
+{
+  "zh": {
+    "ai-cli": [
+      "Claude Code等工具会话数据丢失成社区焦点",
+      "OpenAI Codex #11023获905赞、197评论",
+      "Gemini CLI发布v0.55.0-nightly版本",
+      "OpenCode #16017获124赞，27条评论",
+      "子代理权限管理需求持续高涨",
+      "代码审查自动化成为新兴差异化方向"
+    ],
+    "ai-agents": [
+      "OpenClaw发布v2026.7.2-beta.7版本",
+      "新增隔离存储保护主数据库损坏数据",
+      "支持崩溃可恢复的SQLite快照",
+      "Schema升级数据丢失拒绝功能",
+      "合并PR修复cron时区夏令时问题",
+      "社区454条新Issue活跃，压力大"
+    ],
+    "ai-trending": [
+      "反向渗透工具reverse-skill获1145星登热榜",
+      "airllm单卡4GB即可运行70B模型推理",
+      "antirez/ds4专为DeepSeek本地推理优化",
+      "腾讯云发布TencentDB-Agent-Memory记忆中枢",
+      "Agent-Reach让AI扫描全网零API费用",
+      "微软两门AI课程合计新增超3200星"
+    ],
+    "ai-web": [
+      "OpenAI发布'数学十项进展'元数据页面",
+      "OpenAI发布'构建丰富智力'战略宣言",
+      "Anthropic官网静默无更新，疑为蓄力",
+      "OpenAI转向基础科学贡献与AGI愿景",
+      "OpenAI元数据更新揭示战略焦点转移",
+      "两大厂商分化：Anthropic静默，OpenAI发声"
+    ],
+    "ai-hn": [
+      "个人AI基准测试'哈布斯堡下巴青蛙SVG'走红",
+      "OpenAI Astra模型攻克十个数学难题引争议",
+      "OpenAI数学证明被指逻辑无效需同行评议",
+      "极简C++ Codex代理MicroCodex不足1MB",
+      "Draco自托管爬虫性能优于Python版本",
+      "EU AI监管正式落地引发法律伦理讨论"
+    ],
+    "ai-hf": [
+      "DeepSeek V4系列点赞下载量破百万",
+      "GLM-5.2占据语言模型顶流",
+      "Kimi-K3领跑多模态榜近万赞",
+      "Qwen3.6涌现大量社区微调变体",
+      "HauhauCS版Qwen3.6下载量近200万",
+      "社区推出GGUF量化版本支持Kimi-K3"
+    ],
+    "ai-medical": [
+      "SkinGraphAI多Agent医疗助手支持影像分析",
+      "CareSync-AI专注肾脏病学参考文献",
+      "ClinicalThought-AI-8B临床推理模型获高关注",
+      "医疗AI领域活跃但无临床验证系统",
+      "面向肾脏病学的轻量级Agent原型",
+      "通用模型Qwen2.5微调医疗版实验性"
+    ],
+    "ai-community": [
+      "GPT-5.6 Luna升级自动审查降本增效",
+      "Agent评估工具揭示'干净故事'不可靠",
+      "上下文窗口膨胀是Agent管道无声失败模式",
+      "建立验证闭环而非追求AI绝对正确",
+      "125M小模型胜14B大模型医疗脱敏快40倍",
+      "提示注入防御策略用于LLM网关"
+    ]
+  },
+  "en": {}
+}
